@@ -1,1 +1,856 @@
 
+```html
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+  </script>
+  <script id="tailwind-config">
+    try {
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "navy-blue": "#0A1929",
+              "navy-light": "#143450",
+              "navy-medium": "#1B3A5C",
+              "navy-container": "#0F2B4C",
+              "pearl-white": "#F5F0E8",
+              "pearl-dim": "#E6DED0",
+              "pearl-dark": "#D4C9B5",
+              "gold-accent": "#C5A86B",
+              "gold-light": "#D4C5A9",
+              "error": "#BA1A1A",
+              "error-container": "#FFDAD6",
+              "surface": "#0A1929",
+              "surface-container": "#0F2B4C",
+              "surface-container-high": "#143450",
+              "surface-container-highest": "#1B3A5C",
+              "on-surface": "#F5F0E8",
+              "on-surface-variant": "#D4C9B5",
+              "outline": "#4A6578",
+              "outline-variant": "#2A4A6A",
+              "primary": "#0A1929",
+              "on-primary": "#F5F0E8",
+              "primary-container": "#0F2B4C",
+              "on-primary-container": "#C5A86B",
+              "primary-fixed": "#F5F0E8",
+              "primary-fixed-dim": "#D4C9B5",
+              "secondary": "#4A6578",
+              "secondary-container": "#143450",
+              "on-secondary-container": "#F5F0E8",
+              "tertiary": "#2A4A6A",
+              "tertiary-container": "#1B3A5C",
+              "on-tertiary-container": "#D4C9B5",
+              "surface-dim": "#0A1929",
+              "surface-bright": "#143450",
+              "brand-navy": "#0A1929",
+              "brand-gold": "#C5A86B",
+              "brand-white": "#F5F0E8"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "1rem"
+            },
+            "spacing": {
+              "margin-desktop": "32px",
+              "gutter": "16px",
+              "xl": "64px",
+              "xs": "8px",
+              "sm": "16px",
+              "base": "4px",
+              "margin-mobile": "16px",
+              "md": "24px",
+              "lg": "40px",
+              "container-max": "1200px"
+            },
+            "fontFamily": {
+              "headline-lg": ["Manrope"],
+              "body-lg": ["\"Source Sans 3\""],
+              "headline-lg-mobile": ["Manrope"],
+              "label-caps": ["\"Source Sans 3\""],
+              "headline-md": ["Manrope"],
+              "body-md": ["\"Source Sans 3\""],
+              "data-tabular": ["\"Source Sans 3\""]
+            },
+            "fontSize": {
+              "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+              "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+              "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+              "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+              "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+              "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+              "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "600"}]
+            }
+          },
+        }
+      }
+    } catch (_e) {}
+  </script>
+  <style>
+    /* Ajustes para integración de elementos funcionales en el diseño */
+    .ghost-border {
+      border: 1px solid rgba(197, 168, 107, 0.15);
+    }
+    .custom-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .scroll-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scroll-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 1rem);
+    }
+    
+    /* Estilos para notas clínicas */
+    .clinical-note-area {
+      background: rgba(245, 240, 232, 0.03);
+      border: 1px solid rgba(197, 168, 107, 0.2);
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      min-height: 80px;
+      resize: vertical;
+      transition: all 0.2s;
+      color: #F5F0E8;
+    }
+    .clinical-note-area:focus {
+      border-color: #C5A86B;
+      box-shadow: 0 0 0 2px rgba(197, 168, 107, 0.15);
+      outline: none;
+    }
+    .clinical-note-area::placeholder {
+      color: rgba(212, 201, 181, 0.5);
+    }
+    
+    /* Estilos para input de fotografía */
+    .photo-upload-container {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      border: 2px dashed rgba(197, 168, 107, 0.3);
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      overflow: hidden;
+    }
+    .photo-upload-container:hover {
+      border-color: #C5A86B;
+      background: rgba(197, 168, 107, 0.05);
+    }
+    .photo-upload-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+    .photo-upload-container.has-photo .upload-placeholder {
+      display: none;
+    }
+    .photo-upload-container.has-photo img {
+      display: block;
+    }
+    .upload-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: #D4C9B5;
+    }
+    
+    /* Estilos interactivos para el modelo anatómico */
+    #anatomySvg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .marker-dot {
+      position: absolute;
+      background: #BA1A1A;
+      border: 2px solid white;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(186, 26, 26, 0.4);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 4px rgba(186, 26, 26, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(186, 26, 26, 0.2); }
+      100% { box-shadow: 0 0 0 4px rgba(186, 26, 26, 0.4); }
+    }
+    .marker-label {
+      position: absolute;
+      background: #0A1929;
+      color: #F5F0E8;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+      white-space: nowrap;
+      transform: translate(-50%, -150%);
+      pointer-events: none;
+      display: none;
+      z-index: 11;
+      font-weight: 600;
+    }
+    
+    /* Ajustes input range */
+    input[type=range] {
+      -webkit-appearance: none;
+      height: 6px;
+      border-radius: 5px;
+      background: #C5A86B;
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #F5F0E8;
+      cursor: pointer;
+      border: 2px solid #0A1929;
+    }
+    
+    /* Lista de pacientes dinámica */
+    .patient-item.active {
+      border-left: 4px solid #C5A86B;
+      background: rgba(197, 168, 107, 0.15);
+      opacity: 1 !important;
+    }
+    .folder-tab {
+      transition: all 0.2s;
+    }
+    .folder-tab.active {
+      background: #C5A86B !important;
+      color: #0A1929 !important;
+      border-color: #C5A86B !important;
+    }
+
+    /* Estilos para el Buscador */
+    .search-input {
+      transition: all 0.2s;
+      background: rgba(245, 240, 232, 0.05);
+      border: 1px solid rgba(197, 168, 107, 0.3);
+    }
+    .search-input:focus {
+      border-color: #C5A86B;
+      box-shadow: 0 0 0 2px rgba(197, 168, 107, 0.2);
+    }
+    .search-clear-btn {
+      display: none;
+    }
+    .search-clear-btn.visible {
+      display: flex;
+    }
+    
+    /* Fondos y bordes generales */
+    body {
+      background: #0A1929;
+      color: #F5F0E8;
+    }
+    
+    .card-bg {
+      background: rgba(15, 43, 76, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(197, 168, 107, 0.2);
+    }
+    
+    /* Toast de notificación */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #C5A86B;
+      color: #0A1929;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      z-index: 1000;
+      animation: slideUp 0.3s ease-out;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @keyframes slideUp {
+      from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-navy-blue text-pearl-white">
+
+    <!-- Top App Bar -->
+    <header class="w-full top-0 sticky z-50 bg-navy-container border-b border-gold-accent/20 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16">
+        <div class="flex items-center gap-xs cursor-pointer" id="resetHomeBtn">
+            <span class="material-symbols-outlined text-gold-accent">clinical_notes</span>
+            <h1 class="font-headline-md text-headline-md font-bold text-pearl-white tracking-tight">FN SISTEM</h1>
+        </div>
+        <div class="flex items-center gap-xs">
+            <button class="text-pearl-dim text-sm flex items-center gap-1 border border-gold-accent/30 px-3 py-1 rounded-full hover:bg-gold-accent/10" id="addFolderBtn">
+                <span class="material-symbols-outlined text-sm">create_new_folder</span>
+                <span class="hidden md:inline">Nueva carpeta</span>
+            </button>
+            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gold-accent">
+                <img class="w-full h-full object-cover" alt="Doctor Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj_Yq5pwX1FXglD_04DYbX9ANyR6Wbg3EQ13kPCUeF8UNGmtQCoL9YccJuaMYyk4yMhZ5TfQ-rm91W0EquueKe3Nu_X1JFpchhl7XeuVnP5H9hfZHHgzoOIE776xoeDg5r6OPPZNHBN-JnmnQN0reCQXDNd_z91Z7jnEMVrF_2lo8sCWWGG_yBFLgL3sS8qa4CDR3_CTTAhQ_VBffMZrbWVwl6ywhRrnUjFPtVUR0w39zZly_bKI0fJw">
+            </div>
+        </div>
+    </header>
+
+    <main class="pb-24 pt-md px-margin-mobile">
+        
+        <!-- Folders Nav -->
+        <div class="flex gap-2 overflow-x-auto scroll-hide mb-md pb-1 border-b border-gold-accent/20" id="foldersNav">
+            <div class="text-pearl-dim/50 text-sm py-2">Sin carpetas</div>
+        </div>
+
+        <!-- Patient Search / Selection Area -->
+        <section class="mb-md">
+            <div class="flex items-center justify-between mb-xs">
+                <h2 class="font-label-caps text-label-caps text-pearl-dim uppercase tracking-widest">CARPETAS Y PACIENTES</h2>
+            </div>
+            
+            <!-- Barra de Búsqueda -->
+            <div class="relative mb-sm">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-pearl-dim/70">
+                    <span class="material-symbols-outlined text-sm">search</span>
+                </div>
+                <input type="text" id="patientSearchInput" placeholder="Buscar por nombre, apellido o cédula..." class="w-full bg-navy-container/50 border border-gold-accent/30 rounded-xl py-2.5 pl-10 pr-10 font-body-md text-pearl-white placeholder-pearl-dim/50 focus:outline-none search-input shadow-sm">
+                <button id="clearSearchBtn" class="absolute inset-y-0 right-0 pr-3 flex items-center text-pearl-dim/70 hover:text-error transition-colors search-clear-btn">
+                    <span class="material-symbols-outlined text-sm">close</span>
+                </button>
+            </div>
+
+            <!-- Lista de Pacientes -->
+            <div class="flex gap-sm overflow-x-auto scroll-hide pb-base" id="patientList">
+                <div class="flex-shrink-0 w-full text-center py-4 text-pearl-dim italic text-sm">Cargando pacientes...</div>
+            </div>
+            
+            <button class="mt-3 w-full py-2 bg-transparent border border-dashed border-gold-accent/50 rounded-xl text-pearl-dim text-sm font-bold hover:bg-gold-accent/10 flex items-center justify-center gap-2" id="newPatientBtn">
+                <span class="material-symbols-outlined">add</span>
+                Nuevo paciente
+            </button>
+        </section>
+
+        <!-- Main Patient File -->
+        <div class="flex flex-col gap-md" id="formPanel">
+            <!-- Patient Personal Info Card -->
+            <div class="card-bg rounded-xl p-md custom-shadow">
+                <div class="flex items-center gap-sm mb-md">
+                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10 flex items-center justify-center text-gold-accent">
+                        <span class="material-symbols-outlined" style="font-size: 32px;">person</span>
+                    </div>
+                    <div>
+                        <h3 class="font-headline-md text-headline-md text-pearl-white leading-none">Información General</h3>
+                        <p class="text-xs text-gold-accent mt-xs">Expediente Dinámico</p>
+                    </div>
+                </div>
+                
+                <!-- Fotografía del paciente -->
+                <div class="mb-md">
+                    <label class="font-label-caps text-label-caps text-pearl-dim block mb-xs">FOTOGRAFÍA</label>
+                    <div class="photo-upload-container" id="photoUploadContainer" onclick="document.getElementById('photoInput').click()">
+                        <div class="upload-placeholder">
+                            <span class="material-symbols-outlined text-3xl">add_a_photo</span>
+                            <span class="text-xs">Agregar fotografía</span>
+                        </div>
+                        <img id="photoPreview" alt="Foto del paciente">
+                        <input type="file" id="photoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+                    </div>
+                    <button class="mt-2 text-xs text-pearl-dim underline hover:text-gold-accent" id="removePhotoBtn" style="display:none;" onclick="removePhoto()">Eliminar fotografía</button>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-md" id="patientFormContainer">
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">NOMBRES</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputNombres" placeholder="Nombres" data-field="nombres">
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">APELLIDOS</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputApellidos" placeholder="Apellidos" data-field="apellidos">
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">CÉDULA</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputCedula" placeholder="Cédula" data-field="cedula">
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">EDAD</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="number" id="inputEdad" placeholder="Edad" data-field="edad">
+                    </div>
+                    <div class="space-y-xs col-span-2">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">TELÉFONO</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="tel" id="inputTelefono" placeholder="Ej: +58 412-1234567" data-field="telefono">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Reason & Intensity -->
+            <div class="card-bg rounded-xl p-md custom-shadow">
+                <div class="flex items-center gap-sm mb-md">
+                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10 flex items-center justify-center text-gold-accent">
+                        <span class="material-symbols-outlined" style="font-size: 32px;">stethoscope</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-pearl-white">Detalle de Consulta</h3>
+                </div>
+                <div class="space-y-lg">
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">MOTIVO DE CONSULTA</label>
+                        <input class="w-full bg-navy-light/30 border-0 border-b border-gold-accent/40 focus:ring-0 focus:border-gold-accent px-0 font-body-md text-pearl-white placeholder-pearl-dim/50 auto-save" type="text" id="inputPatologia" placeholder="Ej: Dolor lumbar crónico" data-field="motivo">
+                        <textarea class="clinical-note-area w-full mt-2 auto-save" placeholder="Notas adicionales sobre el motivo de consulta..." data-field="notasMotivo"></textarea>
+                    </div>
+                    <div class="space-y-md">
+                        <div class="flex justify-between items-center">
+                            <label class="font-label-caps text-label-caps text-pearl-dim block">INTENSIDAD DEL DOLOR</label>
+                            <span class="bg-gold-accent text-navy-blue px-3 py-1 rounded-full text-xs font-bold" id="painValue">0 / 10</span>
+                        </div>
+                        <input class="w-full h-2 rounded-lg appearance-none cursor-pointer auto-save" max="10" min="0" step="1" type="range" value="0" id="inputDolorEVA" data-field="dolor">
+                        <div class="flex justify-between text-[10px] font-bold text-pearl-dim uppercase tracking-tighter">
+                            <span>Sin dolor</span>
+                            <span>Moderado</span>
+                            <span>Insoportable</span>
+                        </div>
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">OBSERVACIONES DEL DOLOR</label>
+                        <textarea class="clinical-note-area w-full auto-save" placeholder="Describa características del dolor, irradiación, etc..." data-field="notasDolor"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tratamiento y Receta -->
+            <div class="card-bg rounded-xl p-md custom-shadow">
+                <div class="flex items-center gap-sm mb-md">
+                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10 flex items-center justify-center text-gold-accent">
+                        <span class="material-symbols-outlined" style="font-size: 32px;">prescriptions</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-pearl-white">Tratamiento y Receta</h3>
+                </div>
+                <div class="space-y-md">
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">MEDICAMENTOS RECETADOS</label>
+                        <textarea class="clinical-note-area w-full auto-save" placeholder="Lista de medicamentos, dosis y frecuencia..." data-field="medicamentos"></textarea>
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">INDICACIONES ADICIONALES</label>
+                        <textarea class="clinical-note-area w-full auto-save" placeholder="Recomendaciones, cuidados, próximas citas..." data-field="indicaciones"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // Estado de la aplicación
+            const state = {
+                folders: [],
+                patients: [],
+                currentFolder: null,
+                currentPatient: null,
+                searchTerm: '',
+                autoSaveTimeout: null,
+                mockPatients: [
+                    { id: 1, nombres: 'Carlos', apellidos: 'Mendoza Pérez', cedula: 'V-12345678', edad: 45, telefono: '+58 414-1234567', carpeta: 'General', motivo: 'Dolor lumbar crónico', dolor: 7, notasMotivo: '', notasDolor: '', medicamentos: '', indicaciones: '', foto: null },
+                    { id: 2, nombres: 'María', apellidos: 'González López', cedula: 'V-87654321', edad: 32, telefono: '+58 412-9876543', carpeta: 'General', motivo: 'Cefalea tensional', dolor: 4, notasMotivo: '', notasDolor: '', medicamentos: '', indicaciones: '', foto: null },
+                    { id: 3, nombres: 'Pedro', apellidos: 'Ramírez Soto', cedula: 'V-23456789', edad: 58, telefono: '+58 416-4567890', carpeta: 'Cardiología', motivo: 'Control post-operatorio', dolor: 2, notasMotivo: '', notasDolor: '', medicamentos: '', indicaciones: '', foto: null },
+                    { id: 4, nombres: 'Ana', apellidos: 'Fernández Castillo', cedula: 'V-98765432', edad: 27, telefono: '+58 424-1122334', carpeta: 'Pediatría', motivo: 'Revisión general', dolor: 0, notasMotivo: '', notasDolor: '', medicamentos: '', indicaciones: '', foto: null },
+                    { id: 5, nombres: 'Luis', apellidos: 'Torres Hernández', cedula: 'V-34567890', edad: 63, telefono: '+58 426-7788990', carpeta: 'Traumatología', motivo: 'Fractura de muñeca', dolor: 8, notasMotivo: '', notasDolor: '', medicamentos: '', indicaciones: '', foto: null }
+                ]
+            };
+
+            // Elementos DOM
+            const foldersNav = document.getElementById('foldersNav');
+            const patientList = document.getElementById('patientList');
+            const searchInput = document.getElementById('patientSearchInput');
+            const clearSearchBtn = document.getElementById('clearSearchBtn');
+            const addFolderBtn = document.getElementById('addFolderBtn');
+            const newPatientBtn = document.getElementById('newPatientBtn');
+            const resetHomeBtn = document.getElementById('resetHomeBtn');
+            const painRange = document.getElementById('inputDolorEVA');
+            const painValue = document.getElementById('painValue');
+
+            // Inicialización
+            function init() {
+                loadMockData();
+                renderFolders();
+                renderPatients();
+                setupEventListeners();
+                setupAutoSave();
+            }
+
+            function loadMockData() {
+                const defaultFolders = ['General', 'Cardiología', 'Traumatología', 'Pediatría'];
+                state.folders = defaultFolders.map(name => ({ name, count: 0 }));
+                
+                state.patients = state.mockPatients.map(p => {
+                    const folder = state.folders.find(f => f.name === p.carpeta) || state.folders[0];
+                    folder.count++;
+                    return { ...p, folder: folder.name };
+                });
+                
+                state.currentFolder = state.folders[0];
+            }
+
+            // Renderizado de carpetas
+            function renderFolders() {
+                foldersNav.innerHTML = state.folders.map(folder => `
+                    <button class="folder-tab flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold border transition-all
+                        ${state.currentFolder?.name === folder.name 
+                            ? 'active' 
+                            : 'bg-transparent border-gold-accent/30 text-pearl-dim hover:border-gold-accent/60'}"
+                        data-folder="${folder.name}">
+                        ${folder.name} (${folder.count})
+                    </button>
+                `).join('');
+                
+                document.querySelectorAll('.folder-tab').forEach(tab => {
+                    tab.addEventListener('click', (e) => {
+                        const folderName = e.currentTarget.dataset.folder;
+                        state.currentFolder = state.folders.find(f => f.name === folderName);
+                        state.currentPatient = null;
+                        renderFolders();
+                        renderPatients();
+                        clearPatientForm();
+                    });
+                });
+            }
+
+            // Renderizado de pacientes
+            function renderPatients() {
+                let patientsToShow = state.patients;
+                
+                if (state.currentFolder) {
+                    patientsToShow = patientsToShow.filter(p => p.folder === state.currentFolder.name);
+                }
+                
+                if (state.searchTerm) {
+                    const term = state.searchTerm.toLowerCase();
+                    patientsToShow = patientsToShow.filter(p => 
+                        p.nombres.toLowerCase().includes(term) ||
+                        p.apellidos.toLowerCase().includes(term) ||
+                        p.cedula.toLowerCase().includes(term) ||
+                        (p.telefono && p.telefono.includes(term))
+                    );
+                }
+                
+                if (patientsToShow.length === 0) {
+                    patientList.innerHTML = `
+                        <div class="flex-shrink-0 w-full text-center py-4 text-pearl-dim italic text-sm">
+                            No se encontraron pacientes
+                        </div>
+                    `;
+                } else {
+                    patientList.innerHTML = patientsToShow.map(patient => `
+                        <div class="patient-item flex-shrink-0 w-52 bg-navy-medium/40 rounded-lg p-3 border border-gold-accent/20 cursor-pointer hover:bg-navy-medium/60 transition-all
+                            ${state.currentPatient?.id === patient.id ? 'active' : 'opacity-80'}"
+                            data-patient-id="${patient.id}">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-10 h-10 rounded-full bg-gold-accent/20 flex items-center justify-center overflow-hidden">
+                                    ${patient.foto ? `<img src="${patient.foto}" class="w-full h-full object-cover">` : '<span class="material-symbols-outlined text-sm text-gold-accent">person</span>'}
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-pearl-white truncate">${patient.nombres}</p>
+                                    <p class="text-xs text-pearl-dim truncate">${patient.apellidos}</p>
+                                </div>
+                            </div>
+                            <div class="text-xs text-pearl-dim space-y-0.5">
+                                <p>CI: ${patient.cedula}</p>
+                                <p>Edad: ${patient.edad}</p>
+                                ${patient.telefono ? `<p>📞 ${patient.telefono}</p>` : ''}
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    document.querySelectorAll('.patient-item').forEach(item => {
+                        item.addEventListener('click', (e) => {
+                            const patientId = parseInt(e.currentTarget.dataset.patientId);
+                            selectPatient(patientId);
+                        });
+                    });
+                }
+            }
+
+            function selectPatient(patientId) {
+                state.currentPatient = state.patients.find(p => p.id === patientId);
+                if (state.currentPatient) {
+                    fillPatientForm(state.currentPatient);
+                    renderPatients();
+                }
+            }
+
+            function fillPatientForm(patient) {
+                document.getElementById('inputNombres').value = patient.nombres || '';
+                document.getElementById('inputApellidos').value = patient.apellidos || '';
+                document.getElementById('inputCedula').value = patient.cedula || '';
+                document.getElementById('inputEdad').value = patient.edad || '';
+                document.getElementById('inputTelefono').value = patient.telefono || '';
+                document.getElementById('inputPatologia').value = patient.motivo || '';
+                
+                // Cargar notas clínicas
+                const notasMotivo = document.querySelector('[data-field="notasMotivo"]');
+                const notasDolor = document.querySelector('[data-field="notasDolor"]');
+                const medicamentos = document.querySelector('[data-field="medicamentos"]');
+                const indicaciones = document.querySelector('[data-field="indicaciones"]');
+                
+                if (notasMotivo) notasMotivo.value = patient.notasMotivo || '';
+                if (notasDolor) notasDolor.value = patient.notasDolor || '';
+                if (medicamentos) medicamentos.value = patient.medicamentos || '';
+                if (indicaciones) indicaciones.value = patient.indicaciones || '';
+                
+                if (patient.dolor !== undefined) {
+                    painRange.value = patient.dolor;
+                    painValue.textContent = `${patient.dolor} / 10`;
+                }
+                
+                // Cargar fotografía
+                loadPatientPhoto(patient);
+            }
+
+            function loadPatientPhoto(patient) {
+                const container = document.getElementById('photoUploadContainer');
+                const preview = document.getElementById('photoPreview');
+                const removeBtn = document.getElementById('removePhotoBtn');
+                
+                if (patient.foto) {
+                    preview.src = patient.foto;
+                    container.classList.add('has-photo');
+                    if (removeBtn) removeBtn.style.display = 'block';
+                } else {
+                    preview.src = '';
+                    container.classList.remove('has-photo');
+                    if (removeBtn) removeBtn.style.display = 'none';
+                }
+            }
+
+            function clearPatientForm() {
+                document.getElementById('inputNombres').value = '';
+                document.getElementById('inputApellidos').value = '';
+                document.getElementById('inputCedula').value = '';
+                document.getElementById('inputEdad').value = '';
+                document.getElementById('inputTelefono').value = '';
+                document.getElementById('inputPatologia').value = '';
+                painRange.value = 0;
+                painValue.textContent = '0 / 10';
+                
+                document.querySelectorAll('textarea.auto-save').forEach(ta => ta.value = '');
+                
+                // Limpiar foto
+                const container = document.getElementById('photoUploadContainer');
+                const preview = document.getElementById('photoPreview');
+                const removeBtn = document.getElementById('removePhotoBtn');
+                preview.src = '';
+                container.classList.remove('has-photo');
+                if (removeBtn) removeBtn.style.display = 'none';
+            }
+
+            // Guardado automático
+            function setupAutoSave() {
+                document.querySelectorAll('.auto-save').forEach(element => {
+                    element.addEventListener('input', () => {
+                        if (!state.currentPatient) return;
+                        
+                        clearTimeout(state.autoSaveTimeout);
+                        state.autoSaveTimeout = setTimeout(() => {
+                            saveCurrentPatient();
+                        }, 500);
+                    });
+                });
+            }
+
+            function saveCurrentPatient() {
+                if (!state.currentPatient) return;
+                
+                const patient = state.currentPatient;
+                patient.nombres = document.getElementById('inputNombres').value;
+                patient.apellidos = document.getElementById('inputApellidos').value;
+                patient.cedula = document.getElementById('inputCedula').value;
+                patient.edad = parseInt(document.getElementById('inputEdad').value) || 0;
+                patient.telefono = document.getElementById('inputTelefono').value;
+                patient.motivo = document.getElementById('inputPatologia').value;
+                patient.dolor = parseInt(painRange.value);
+                
+                // Guardar notas clínicas
+                const notasMotivo = document.querySelector('[data-field="notasMotivo"]');
+                const notasDolor = document.querySelector('[data-field="notasDolor"]');
+                const medicamentos = document.querySelector('[data-field="medicamentos"]');
+                const indicaciones = document.querySelector('[data-field="indicaciones"]');
+                
+                if (notasMotivo) patient.notasMotivo = notasMotivo.value;
+                if (notasDolor) patient.notasDolor = notasDolor.value;
+                if (medicamentos) patient.medicamentos = medicamentos.value;
+                if (indicaciones) patient.indicaciones = indicaciones.value;
+                
+                showToast('Cambios guardados automáticamente');
+                renderPatients();
+            }
+
+            function showToast(message) {
+                const existingToast = document.querySelector('.toast');
+                if (existingToast) existingToast.remove();
+                
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.remove();
+                }, 2000);
+            }
+
+            // Manejo de fotografía
+            window.handlePhotoUpload = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                if (!state.currentPatient) {
+                    alert('Seleccione un paciente primero');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const photoData = e.target.result;
+                    state.currentPatient.foto = photoData;
+                    loadPatientPhoto(state.currentPatient);
+                    showToast('Fotografía guardada');
+                    renderPatients();
+                };
+                reader.readAsDataURL(file);
+            };
+
+            window.removePhoto = function() {
+                if (!state.currentPatient) return;
+                state.currentPatient.foto = null;
+                loadPatientPhoto(state.currentPatient);
+                showToast('Fotografía eliminada');
+                renderPatients();
+            };
+
+            // Event listeners principales
+            function setupEventListeners() {
+                searchInput.addEventListener('input', (e) => {
+                    state.searchTerm = e.target.value;
+                    if (state.searchTerm) {
+                        clearSearchBtn.classList.add('visible');
+                    } else {
+                        clearSearchBtn.classList.remove('visible');
+                    }
+                    renderPatients();
+                });
+                
+                clearSearchBtn.addEventListener('click', () => {
+                    searchInput.value = '';
+                    state.searchTerm = '';
+                    clearSearchBtn.classList.remove('visible');
+                    renderPatients();
+                    searchInput.focus();
+                });
+                
+                addFolderBtn.addEventListener('click', () => {
+                    const folderName = prompt('Nombre de la nueva carpeta:');
+                    if (folderName && folderName.trim()) {
+                        const name = folderName.trim();
+                        if (!state.folders.find(f => f.name === name)) {
+                            state.folders.push({ name, count: 0 });
+                            state.currentFolder = state.folders[state.folders.length - 1];
+                            renderFolders();
+                            renderPatients();
+                            clearPatientForm();
+                            showToast(`Carpeta "${name}" creada`);
+                        } else {
+                            alert('Ya existe una carpeta con ese nombre');
+                        }
+                    }
+                });
+                
+                newPatientBtn.addEventListener('click', () => {
+                    if (!state.currentFolder) {
+                        alert('Seleccione una carpeta primero');
+                        return;
+                    }
+                    
+                    const nombres = prompt('Nombres del paciente:');
+                    if (!nombres) return;
+                    
+                    const apellidos = prompt('Apellidos del paciente:');
+                    if (!apellidos) return;
+                    
+                    const cedula = prompt('Cédula del paciente:');
+                    if (!cedula) return;
+                    
+                    const edad = prompt('Edad del paciente:');
+                    if (!edad) return;
+                    
+                    const telefono = prompt('Teléfono del paciente (opcional):');
+                    
+                    const newPatient = {
+                        id: Date.now(),
+                        nombres,
+                        apellidos,
+                        cedula,
+                        edad: parseInt(edad) || 0,
+                        telefono: telefono || '',
+                        folder: state.currentFolder.name,
+                        motivo: '',
+                        dolor: 0,
+                        notasMotivo: '',
+                        notasDolor: '',
+                        medicamentos: '',
+                        indicaciones: '',
+                        foto: null
+                    };
+                    
+                    state.patients.push(newPatient);
+                    const folder = state.folders.find(f => f.name === state.currentFolder.name);
+                    if (folder) folder.count++;
+                    
+                    state.currentPatient = newPatient;
+                    renderFolders();
+                    renderPatients();
+                    fillPatientForm(newPatient);
+                    showToast('Paciente creado exitosamente');
+                });
+                
+                painRange.addEventListener('input', (e) => {
+                    painValue.textContent = `${e.target.value} / 10`;
+                });
+                
+                resetHomeBtn.addEventListener('click', () => {
+                    state.currentFolder = state.folders[0];
+                    state.currentPatient = null;
+                    state.searchTerm = '';
+                    searchInput.value = '';
+                    clearSearchBtn.classList.remove('visible');
+                    renderFolders();
+                    renderPatients();
+                    clearPatientForm();
+                });
+            }
+
+            // Iniciar aplicación
+            init();
+        })();
+    </script>
+</body>
+</html>
+```
