@@ -23,7 +23,6 @@
       margin: 0;
     }
 
-    /* animación de entrada general */
     @keyframes fadeSlideUp {
       0% {
         opacity: 0;
@@ -37,29 +36,24 @@
 
     .main-container {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
       animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* tarjeta principal con efecto perlado */
     .clinical-card {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
       background: linear-gradient(135deg, #ffffff 0%, #f5f7fd 100%);
       border-radius: 2.5rem;
       box-shadow: 0 25px 50px -12px rgba(0, 20, 60, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
       border: 1px solid rgba(173, 192, 230, 0.4);
-      padding: 2rem 2rem 2.2rem;
+      padding: 2rem;
       transition: all 0.2s ease;
     }
 
-    /* Encabezado con animación del nombre */
     .brand-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
       gap: 1rem;
     }
@@ -96,14 +90,8 @@
       margin-left: 0.2rem;
     }
 
-    .folder-manager {
-      display: flex;
-      gap: 0.7rem;
-      align-items: center;
-    }
-
     .btn-add-folder {
-      background: #ffffff;
+      background: rgba(255,255,255,0.7);
       border: 1px solid #cbd6e8;
       color: #1f4e8c;
       font-weight: 600;
@@ -112,7 +100,6 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(255,255,255,0.7);
       backdrop-filter: blur(5px);
       box-shadow: 0 4px 10px rgba(0,32,64,0.08);
       cursor: pointer;
@@ -130,8 +117,8 @@
     .folders-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-bottom: 1.8rem;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
       align-items: center;
     }
 
@@ -139,7 +126,7 @@
       background: rgba(255,255,255,0.75);
       backdrop-filter: blur(8px);
       border: 1px solid #cfdef5;
-      padding: 0.5rem 1.4rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 2.5rem;
       font-weight: 600;
       color: #103a5c;
@@ -179,24 +166,98 @@
       color: #c00;
     }
 
-    .folder-tab.active .delete-folder:hover {
-      color: #ffcccc;
+    .main-layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 1.5rem;
     }
 
-    .patient-grid {
+    .patient-list-panel {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 1.5rem;
+      padding: 1rem;
+      border: 1px solid #dce6f5;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .patient-list-title {
+      font-weight: 700;
+      color: #1f4e8c;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .patient-item {
+      padding: 0.7rem 1rem;
+      margin-bottom: 0.4rem;
+      background: white;
+      border-radius: 1rem;
+      cursor: pointer;
+      border: 1px solid #e0e8f5;
+      font-size: 0.85rem;
+      transition: 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .patient-item:hover {
+      background: #eef3ff;
+      border-color: #1f4e8c;
+    }
+
+    .patient-item.active {
+      background: #1f4e8c;
+      color: white;
+      border-color: #0e3a6b;
+    }
+
+    .delete-patient {
+      color: #c00;
+      cursor: pointer;
+      font-weight: bold;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    .delete-patient:hover {
+      opacity: 1;
+    }
+
+    .new-patient-btn {
+      width: 100%;
+      padding: 0.6rem;
+      background: #e6effb;
+      border: 1px dashed #1f4e8c;
+      color: #1f4e8c;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      transition: 0.2s;
+    }
+
+    .new-patient-btn:hover {
+      background: #d0e0ff;
+    }
+
+    .form-panel {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.2rem;
     }
 
     .row-duo {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 1rem;
     }
 
     .input-group {
-      flex: 1 1 200px;
+      flex: 1 1 180px;
       display: flex;
       flex-direction: column;
       gap: 0.3rem;
@@ -204,23 +265,18 @@
 
     label {
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #1e3b5a;
       letter-spacing: 0.3px;
       text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.2rem;
     }
 
     input, textarea, select {
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(4px);
-      border: 1px solid #d9e2f0;
-      border-radius: 1.2rem;
-      padding: 0.8rem 1.2rem;
-      font-size: 0.95rem;
       background: #ffffff;
+      border: 1px solid #d9e2f0;
+      border-radius: 1rem;
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
       box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
       transition: 0.2s;
       outline: none;
@@ -235,76 +291,96 @@
 
     .anatomy-section {
       background: #f9fcff;
-      border-radius: 1.8rem;
-      padding: 1.2rem 1.2rem 1rem;
+      border-radius: 1.5rem;
+      padding: 1.2rem;
       border: 1px solid #dce6f5;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(10px);
-      margin: 0.5rem 0 0.8rem;
     }
 
     .anatomy-title {
       font-weight: 600;
       color: #103a5c;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .anatomy-layout {
       display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .body-diagram {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #e9f0fa;
-      border-radius: 2rem;
-      padding: 1rem;
+      flex: 1;
+      min-width: 280px;
       background: linear-gradient(180deg, #e6edf8 0%, #dbe5f5 100%);
-      cursor: pointer;
-      transition: 0.2s;
-      min-height: 240px;
+      border-radius: 1.5rem;
+      padding: 1rem;
+      cursor: crosshair;
+      position: relative;
     }
 
-    .figure-svg {
-      width: 100%;
-      max-height: 280px;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+    .region-list {
+      flex: 0 0 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .region-btn {
+      padding: 0.5rem 1rem;
+      background: white;
+      border: 1px solid #d9e2f0;
+      border-radius: 0.8rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      text-align: left;
       transition: 0.2s;
+    }
+
+    .region-btn:hover {
+      background: #eef3ff;
+      border-color: #1f4e8c;
+    }
+
+    .region-btn.selected {
+      background: #1f4e8c;
+      color: white;
+      border-color: #0e3a6b;
     }
 
     .marker-dot {
       position: absolute;
       background: #d42e2e;
       border: 2px solid white;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       box-shadow: 0 0 0 3px rgba(200,30,30,0.4);
       transform: translate(-50%, -50%);
       pointer-events: none;
-      transition: 0.1s;
       display: none;
+      z-index: 10;
     }
 
     .marker-label {
       position: absolute;
-      background: rgba(20,30,50,0.85);
+      background: rgba(20,30,50,0.9);
       color: white;
       font-size: 0.7rem;
       padding: 0.2rem 0.7rem;
       border-radius: 1rem;
       white-space: nowrap;
-      transform: translate(-50%, -140%);
+      transform: translate(-50%, -150%);
       pointer-events: none;
       display: none;
+      z-index: 11;
     }
 
     .pain-range {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      flex-wrap: wrap;
     }
 
     .pain-value {
@@ -315,56 +391,60 @@
       border-radius: 2rem;
     }
 
-    .anamnesis-block {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-top: 0.4rem;
-    }
-
     textarea {
       resize: vertical;
-      min-height: 100px;
+      min-height: 90px;
     }
 
     .footer-actions {
       display: flex;
       justify-content: flex-end;
-      margin-top: 1.5rem;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .save-btn, .delete-patient-btn {
+      padding: 0.8rem 2rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+      border: none;
+      font-size: 0.95rem;
     }
 
     .save-btn {
       background: #1f4e8c;
-      border: none;
       color: white;
-      font-weight: 600;
-      padding: 0.8rem 2.2rem;
-      border-radius: 2.5rem;
-      font-size: 1rem;
-      cursor: pointer;
       box-shadow: 0 10px 18px -8px #1f4e8c80;
-      transition: 0.25s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
     }
 
     .save-btn:hover {
       background: #0e3a6b;
       transform: translateY(-2px);
-      box-shadow: 0 16px 22px -10px #103a5c;
     }
 
-    .hidden {
-      display: none;
+    .delete-patient-btn {
+      background: white;
+      color: #c00;
+      border: 1px solid #fcc;
     }
 
-    @media (max-width: 650px) {
-      .clinical-card {
-        padding: 1.5rem;
+    .delete-patient-btn:hover {
+      background: #fff5f5;
+    }
+
+    @media (max-width: 800px) {
+      .main-layout {
+        grid-template-columns: 1fr;
       }
-      .fn-letters {
-        font-size: 2.2rem;
+      .anatomy-layout {
+        flex-direction: column;
+      }
+      .region-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-height: none;
       }
     }
   </style>
@@ -373,7 +453,6 @@
 <div class="main-container">
   <div class="clinical-card">
     
-    <!-- Animación de entrada con palabras FN SISTEM -->
     <div class="brand-header">
       <div class="logo-area">
         <span class="fn-letters">FN</span>
@@ -384,107 +463,137 @@
       </button>
     </div>
 
-    <!-- Contenedor dinámico de pestañas de carpetas -->
     <div id="foldersContainer" class="folders-container"></div>
 
-    <!-- Formulario del paciente (se renderiza según carpeta activa) -->
-    <div id="patientFormContainer" class="patient-grid">
-      <!-- Los campos se generan dinámicamente con JS -->
-    </div>
-
-    <!-- Sección de anatomía interactiva -->
-    <div class="anatomy-section" id="anatomyModule">
-      <div class="anatomy-title">
-        <span>🦵</span> Localización anatómica (toque sobre la figura)
+    <div class="main-layout">
+      <!-- Panel de lista de pacientes -->
+      <div class="patient-list-panel" id="patientListPanel">
+        <div class="patient-list-title">📋 Pacientes</div>
+        <div id="patientList"></div>
+        <button class="new-patient-btn" id="newPatientBtn">+ Nuevo paciente</button>
       </div>
-      <div class="body-diagram" id="bodyDiagram">
-        <!-- SVG simplificado de miembro inferior (pierna) con zona poplítea -->
-        <svg class="figure-svg" viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g id="leg-outline" stroke="#2c3e50" stroke-width="2.5" fill="#e7ecf8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- muslo -->
-            <path d="M95 20 L90 70 Q85 120 80 150" stroke-width="3" fill="none"/>
-            <path d="M105 20 L110 70 Q115 120 120 150" stroke-width="3" fill="none"/>
-            <!-- rodilla / zona poplítea -->
-            <ellipse cx="100" cy="165" rx="25" ry="18" fill="#d9e2f0" stroke="#1e3b5a" stroke-width="2.5"/>
-            <!-- pantorrilla -->
-            <path d="M82 180 Q78 220 70 260" stroke-width="3" fill="none"/>
-            <path d="M118 180 Q122 220 130 260" stroke-width="3" fill="none"/>
-            <!-- pie simplificado -->
-            <path d="M70 260 L95 275 L130 260" stroke-width="3" fill="none"/>
-            <line x1="95" y1="275" x2="95" y2="285" stroke-width="2.5"/>
-          </g>
-          <text x="100" y="295" text-anchor="middle" fill="#1e3b5a" font-size="10">Miembro inferior derecho</text>
-        </svg>
-        <div id="anatomyMarker" class="marker-dot"></div>
-        <div id="anatomyLabel" class="marker-label">Fosa poplítea</div>
-      </div>
-      <div style="margin-top: 0.5rem; font-size:0.8rem; color:#2c3e50;" id="selectedLocationText">
-        📍 Ningún punto seleccionado
-      </div>
-    </div>
 
-    <!-- Anamnesis y guardado -->
-    <div class="anamnesis-block">
-      <label>📋 Anamnesis</label>
-      <textarea id="anamnesisText" placeholder="Redacte la anamnesis detallada del paciente..."></textarea>
-    </div>
+      <!-- Panel de formulario -->
+      <div class="form-panel" id="formPanel">
+        <div id="patientFormContainer">
+          <!-- Renderizado dinámico -->
+        </div>
 
-    <div class="footer-actions">
-      <button class="save-btn" id="savePatientBtn">💾 Guardar paciente</button>
+        <!-- Anatomía interactiva -->
+        <div class="anatomy-section">
+          <div class="anatomy-title">🦴 Localización anatómica</div>
+          <div class="anatomy-layout">
+            <div class="body-diagram" id="bodyDiagram">
+              <svg viewBox="0 0 300 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-height:450px;">
+                <!-- Cabeza -->
+                <ellipse cx="150" cy="35" rx="22" ry="28" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-cabeza"/>
+                <!-- Cuello -->
+                <rect x="138" y="58" width="24" height="20" rx="5" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-cuello"/>
+                <!-- Tórax -->
+                <rect x="110" y="75" width="80" height="100" rx="15" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-torax"/>
+                <!-- Abdomen -->
+                <rect x="115" y="170" width="70" height="70" rx="12" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-abdomen"/>
+                <!-- Brazo izquierdo -->
+                <rect x="65" y="80" width="22" height="110" rx="11" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-brazo-izq"/>
+                <!-- Antebrazo izquierdo -->
+                <rect x="68" y="185" width="18" height="90" rx="9" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-antebrazo-izq"/>
+                <!-- Mano izquierda -->
+                <ellipse cx="77" cy="285" rx="14" ry="10" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-mano-izq"/>
+                <!-- Brazo derecho -->
+                <rect x="213" y="80" width="22" height="110" rx="11" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-brazo-der"/>
+                <!-- Antebrazo derecho -->
+                <rect x="214" y="185" width="18" height="90" rx="9" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-antebrazo-der"/>
+                <!-- Mano derecha -->
+                <ellipse cx="223" cy="285" rx="14" ry="10" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-mano-der"/>
+                <!-- Muslo izquierdo -->
+                <rect x="110" y="245" width="28" height="100" rx="14" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-muslo-izq"/>
+                <!-- Rodilla izquierda -->
+                <ellipse cx="124" cy="350" rx="18" ry="14" fill="#d9e2f0" stroke="#2c3e50" stroke-width="2" id="region-rodilla-izq"/>
+                <!-- Pantorrilla izquierda -->
+                <rect x="112" y="360" width="24" height="80" rx="12" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-pantorrilla-izq"/>
+                <!-- Pie izquierdo -->
+                <ellipse cx="124" cy="450" rx="20" ry="10" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-pie-izq"/>
+                <!-- Muslo derecho -->
+                <rect x="162" y="245" width="28" height="100" rx="14" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-muslo-der"/>
+                <!-- Rodilla derecha -->
+                <ellipse cx="176" cy="350" rx="18" ry="14" fill="#d9e2f0" stroke="#2c3e50" stroke-width="2" id="region-rodilla-der"/>
+                <!-- Pantorrilla derecha -->
+                <rect x="164" y="360" width="24" height="80" rx="12" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-pantorrilla-der"/>
+                <!-- Pie derecho -->
+                <ellipse cx="176" cy="450" rx="20" ry="10" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-pie-der"/>
+              </svg>
+              <div id="anatomyMarker" class="marker-dot"></div>
+              <div id="anatomyLabel" class="marker-label"></div>
+            </div>
+            <div class="region-list" id="regionList"></div>
+          </div>
+        </div>
+
+        <!-- Anamnesis -->
+        <div class="input-group">
+          <label>📋 Anamnesis</label>
+          <textarea id="anamnesisText" placeholder="Redacte la anamnesis detallada del paciente..."></textarea>
+        </div>
+
+        <div class="footer-actions">
+          <button class="delete-patient-btn" id="deletePatientBtn" style="display:none;">🗑 Eliminar paciente</button>
+          <button class="save-btn" id="savePatientBtn">💾 Guardar</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
   (function() {
-    // Estado de la aplicación
-    const STORAGE_KEY = 'fn_sistem_patients';
-    
-    // Estructura de carpeta por defecto
+    const STORAGE_KEY = 'fn_sistem_patients_v2';
     const DEFAULT_FOLDER_ID = 'folder_001';
-    
-    // Datos iniciales
+
+    // Regiones anatómicas
+    const ANATOMY_REGIONS = [
+      { id: 'cabeza', label: 'Cabeza' },
+      { id: 'cuello', label: 'Cuello' },
+      { id: 'torax', label: 'Tórax' },
+      { id: 'abdomen', label: 'Abdomen' },
+      { id: 'brazo-izq', label: 'Brazo izquierdo' },
+      { id: 'antebrazo-izq', label: 'Antebrazo izquierdo' },
+      { id: 'mano-izq', label: 'Mano izquierda' },
+      { id: 'brazo-der', label: 'Brazo derecho' },
+      { id: 'antebrazo-der', label: 'Antebrazo derecho' },
+      { id: 'mano-der', label: 'Mano derecha' },
+      { id: 'muslo-izq', label: 'Muslo izquierdo' },
+      { id: 'rodilla-izq', label: 'Rodilla izquierda' },
+      { id: 'pantorrilla-izq', label: 'Pantorrilla izquierda' },
+      { id: 'pie-izq', label: 'Pie izquierdo' },
+      { id: 'muslo-der', label: 'Muslo derecho' },
+      { id: 'rodilla-der', label: 'Rodilla derecha' },
+      { id: 'pantorrilla-der', label: 'Pantorrilla derecha' },
+      { id: 'pie-der', label: 'Pie derecho' }
+    ];
+
     let appData = {
-      folders: [
-        { id: DEFAULT_FOLDER_ID, name: 'Pacientes Generales' }
-      ],
+      folders: [{ id: DEFAULT_FOLDER_ID, name: 'Pacientes Generales' }],
       activeFolderId: DEFAULT_FOLDER_ID,
-      patients: {
-        [DEFAULT_FOLDER_ID]: []
-      }
+      patients: { [DEFAULT_FOLDER_ID]: [] }
     };
 
-    // Paciente actual en formulario (datos temporales)
-    let currentPatientData = {
-      id: null,
-      folderId: null,
-      nombres: '',
-      apellidos: '',
-      edad: '',
-      peso: '',
-      talla: '',
-      antFarmacologicos: '',
-      antPatologicos: '',
-      patologia: '',
-      dolorEVA: '0',
-      causaPatologia: '',
-      lugarPatologia: 'Miembro inferior derecho - fosa poplítea',
-      anatomyCoord: { x: 50, y: 58 }, // porcentaje relativo
-      anamnesis: ''
-    };
+    let currentPatientData = null;
+    let selectedRegion = null;
 
     // Elementos DOM
     const foldersContainer = document.getElementById('foldersContainer');
+    const patientListDiv = document.getElementById('patientList');
     const patientFormContainer = document.getElementById('patientFormContainer');
     const addFolderBtn = document.getElementById('addFolderBtn');
     const saveBtn = document.getElementById('savePatientBtn');
+    const deletePatientBtn = document.getElementById('deletePatientBtn');
+    const newPatientBtn = document.getElementById('newPatientBtn');
     const anamnesisTextarea = document.getElementById('anamnesisText');
     const bodyDiagram = document.getElementById('bodyDiagram');
     const markerDot = document.getElementById('anatomyMarker');
     const markerLabel = document.getElementById('anatomyLabel');
-    const selectedLocationText = document.getElementById('selectedLocationText');
+    const regionListDiv = document.getElementById('regionList');
 
-    // Cargar datos desde localStorage
     function loadFromStorage() {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
@@ -493,11 +602,8 @@
           if (parsed.folders && parsed.patients && parsed.activeFolderId) {
             appData = parsed;
           }
-        } catch (e) {
-          console.warn('Error al cargar datos, usando defaults');
-        }
+        } catch (e) {}
       }
-      // Asegurar carpeta por defecto
       if (!appData.folders.length) {
         appData.folders = [{ id: DEFAULT_FOLDER_ID, name: 'Pacientes Generales' }];
         appData.activeFolderId = DEFAULT_FOLDER_ID;
@@ -512,16 +618,46 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
     }
 
-    // Renderizar pestañas de carpetas
+    function escapeHtml(text) {
+      return String(text).replace(/[&<>"]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        if (m === '"') return '&quot;';
+        return m;
+      });
+    }
+
+    function createEmptyPatient() {
+      return {
+        id: null,
+        folderId: appData.activeFolderId,
+        nombres: '',
+        apellidos: '',
+        edad: '',
+        peso: '',
+        talla: '',
+        antFarmacologicos: '',
+        antPatologicos: '',
+        patologia: '',
+        dolorEVA: '0',
+        causaPatologia: '',
+        lugarPatologia: '',
+        anatomyRegion: null,
+        anatomyCoord: null,
+        anamnesis: ''
+      };
+    }
+
+    // Renderizar carpetas
     function renderFolders() {
-      if (!foldersContainer) return;
       foldersContainer.innerHTML = '';
       appData.folders.forEach(folder => {
         const tab = document.createElement('div');
         tab.className = `folder-tab ${folder.id === appData.activeFolderId ? 'active' : ''}`;
         tab.innerHTML = `
           <span>📁 ${escapeHtml(folder.name)}</span>
-          ${appData.folders.length > 1 ? '<button class="delete-folder" data-folder-id="' + folder.id + '">✕</button>' : ''}
+          ${appData.folders.length > 1 ? '<button class="delete-folder">✕</button>' : ''}
         `;
         tab.addEventListener('click', (e) => {
           if (e.target.classList.contains('delete-folder')) {
@@ -535,23 +671,17 @@
       });
     }
 
-    function escapeHtml(text) {
-      return String(text).replace(/[&<>"]/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        if (m === '"') return '&quot;';
-        return m;
-      });
-    }
-
     function setActiveFolder(folderId) {
       if (appData.activeFolderId === folderId) return;
       appData.activeFolderId = folderId;
       saveToStorage();
       renderFolders();
-      resetPatientForm();
+      renderPatientList();
+      currentPatientData = createEmptyPatient();
+      selectedRegion = null;
       renderPatientForm();
+      renderRegionList();
+      updateMarker();
     }
 
     function deleteFolder(folderId) {
@@ -559,64 +689,158 @@
         alert('Debe existir al menos una carpeta.');
         return;
       }
-      const confirmDel = confirm('¿Eliminar esta carpeta y todos sus pacientes?');
-      if (!confirmDel) return;
-      
+      if (!confirm('¿Eliminar esta carpeta y todos sus pacientes?')) return;
       appData.folders = appData.folders.filter(f => f.id !== folderId);
       delete appData.patients[folderId];
-      
       if (appData.activeFolderId === folderId) {
         appData.activeFolderId = appData.folders[0].id;
       }
       saveToStorage();
       renderFolders();
-      resetPatientForm();
+      renderPatientList();
+      currentPatientData = createEmptyPatient();
+      selectedRegion = null;
       renderPatientForm();
+      renderRegionList();
+      updateMarker();
     }
 
     function addNewFolder() {
       const name = prompt('Nombre de la nueva carpeta:');
-      if (!name || name.trim() === '') return;
+      if (!name || !name.trim()) return;
       const trimmed = name.trim();
-      const newId = 'folder_' + Date.now() + Math.random().toString(36).substr(2, 4);
+      const newId = 'folder_' + Date.now();
       appData.folders.push({ id: newId, name: trimmed });
       appData.patients[newId] = [];
       appData.activeFolderId = newId;
       saveToStorage();
       renderFolders();
-      resetPatientForm();
+      renderPatientList();
+      currentPatientData = createEmptyPatient();
+      selectedRegion = null;
       renderPatientForm();
+      renderRegionList();
+      updateMarker();
     }
 
-    function resetPatientForm() {
-      currentPatientData = {
-        id: null,
-        folderId: appData.activeFolderId,
-        nombres: '',
-        apellidos: '',
-        edad: '',
-        peso: '',
-        talla: '',
-        antFarmacologicos: '',
-        antPatologicos: '',
-        patologia: '',
-        dolorEVA: '0',
-        causaPatologia: '',
-        lugarPatologia: 'Miembro inferior derecho - fosa poplítea',
-        anatomyCoord: { x: 50, y: 58 },
-        anamnesis: ''
-      };
+    // Lista de pacientes
+    function renderPatientList() {
+      const folderId = appData.activeFolderId;
+      const patients = appData.patients[folderId] || [];
+      patientListDiv.innerHTML = '';
+      
+      patients.forEach(p => {
+        const div = document.createElement('div');
+        div.className = `patient-item ${currentPatientData && currentPatientData.id === p.id ? 'active' : ''}`;
+        div.innerHTML = `
+          <span>${escapeHtml(p.nombres || p.apellidos || 'Sin nombre')}</span>
+          <span class="delete-patient" data-id="${p.id}">✕</span>
+        `;
+        div.addEventListener('click', (e) => {
+          if (e.target.classList.contains('delete-patient')) {
+            e.stopPropagation();
+            deletePatient(p.id);
+            return;
+          }
+          loadPatient(p);
+        });
+        patientListDiv.appendChild(div);
+      });
     }
 
-    // Renderizar formulario con datos actuales
+    function loadPatient(patient) {
+      currentPatientData = { ...patient };
+      selectedRegion = patient.anatomyRegion || null;
+      renderPatientForm();
+      renderRegionList();
+      updateMarker();
+      renderPatientList();
+      deletePatientBtn.style.display = 'inline-block';
+    }
+
+    function deletePatient(patientId) {
+      if (!confirm('¿Eliminar este paciente?')) return;
+      const folderId = appData.activeFolderId;
+      appData.patients[folderId] = appData.patients[folderId].filter(p => p.id !== patientId);
+      saveToStorage();
+      if (currentPatientData && currentPatientData.id === patientId) {
+        currentPatientData = createEmptyPatient();
+        selectedRegion = null;
+        renderPatientForm();
+        renderRegionList();
+        updateMarker();
+        deletePatientBtn.style.display = 'none';
+      }
+      renderPatientList();
+    }
+
+    // Lista de regiones anatómicas
+    function renderRegionList() {
+      regionListDiv.innerHTML = '';
+      ANATOMY_REGIONS.forEach(region => {
+        const btn = document.createElement('div');
+        btn.className = `region-btn ${selectedRegion === region.id ? 'selected' : ''}`;
+        btn.textContent = region.label;
+        btn.addEventListener('click', () => {
+          selectedRegion = region.id;
+          currentPatientData.anatomyRegion = region.id;
+          currentPatientData.lugarPatologia = region.label;
+          renderRegionList();
+          updateMarker();
+          // Actualizar campo de lugar
+          const lugarInput = document.getElementById('inputLugar');
+          if (lugarInput) lugarInput.value = region.label;
+        });
+        regionListDiv.appendChild(btn);
+      });
+    }
+
+    function updateMarker() {
+      if (!selectedRegion) {
+        markerDot.style.display = 'none';
+        markerLabel.style.display = 'none';
+        return;
+      }
+      const svgEl = document.querySelector(`#region-${selectedRegion}`);
+      if (!svgEl) {
+        markerDot.style.display = 'none';
+        markerLabel.style.display = 'none';
+        return;
+      }
+      const diagramRect = bodyDiagram.getBoundingClientRect();
+      const svgRect = bodyDiagram.querySelector('svg').getBoundingClientRect();
+      const bbox = svgEl.getBBox();
+      const svgElRect = svgEl.getBoundingClientRect();
+      
+      const cx = bbox.x + bbox.width / 2;
+      const cy = bbox.y + bbox.height / 2;
+      
+      const percentX = ((svgElRect.left - svgRect.left) + svgElRect.width / 2) / svgRect.width * 100;
+      const percentY = ((svgElRect.top - svgRect.top) + svgElRect.height / 2) / svgRect.height * 100;
+      
+      markerDot.style.display = 'block';
+      markerDot.style.left = percentX + '%';
+      markerDot.style.top = percentY + '%';
+      
+      const region = ANATOMY_REGIONS.find(r => r.id === selectedRegion);
+      markerLabel.style.display = 'block';
+      markerLabel.style.left = percentX + '%';
+      markerLabel.style.top = (percentY - 6) + '%';
+      markerLabel.textContent = region ? region.label : '';
+      
+      currentPatientData.anatomyCoord = { x: Math.round(percentX), y: Math.round(percentY) };
+    }
+
+    // Renderizar formulario
     function renderPatientForm() {
-      if (!patientFormContainer) return;
+      if (!currentPatientData) currentPatientData = createEmptyPatient();
       const p = currentPatientData;
+      
       patientFormContainer.innerHTML = `
         <div class="row-duo">
           <div class="input-group">
             <label>👤 Nombres</label>
-            <input type="text" id="inputNombres" value="${escapeHtml(p.nombres)}" placeholder="Nombres">
+            <input type="text" id="inputNombres" value="${escapeHtml(p.nombres)}" placeholder="Nombres del paciente">
           </div>
           <div class="input-group">
             <label>👥 Apellidos</label>
@@ -630,17 +854,17 @@
           </div>
           <div class="input-group">
             <label>⚖️ Peso (kg)</label>
-            <input type="text" id="inputPeso" value="${escapeHtml(p.peso)}" placeholder="Peso">
+            <input type="text" id="inputPeso" value="${escapeHtml(p.peso)}" placeholder="Peso en kg">
           </div>
           <div class="input-group">
             <label>📏 Talla (cm)</label>
-            <input type="text" id="inputTalla" value="${escapeHtml(p.talla)}" placeholder="Talla">
+            <input type="text" id="inputTalla" value="${escapeHtml(p.talla)}" placeholder="Talla en cm">
           </div>
         </div>
         <div class="row-duo">
           <div class="input-group">
             <label>💊 Antecedentes farmacológicos</label>
-            <input type="text" id="inputAntFarm" value="${escapeHtml(p.antFarmacologicos)}" placeholder="Medicamentos">
+            <input type="text" id="inputAntFarm" value="${escapeHtml(p.antFarmacologicos)}" placeholder="Medicamentos actuales o previos">
           </div>
           <div class="input-group">
             <label>🩺 Antecedentes patológicos</label>
@@ -650,10 +874,10 @@
         <div class="row-duo">
           <div class="input-group">
             <label>🩻 Patología</label>
-            <input type="text" id="inputPatologia" value="${escapeHtml(p.patologia)}" placeholder="Diagnóstico / patología">
+            <input type="text" id="inputPatologia" value="${escapeHtml(p.patologia)}" placeholder="Diagnóstico actual">
           </div>
           <div class="input-group">
-            <label>😣 Nivel de dolor (EVA 1-10)</label>
+            <label>😣 Dolor EVA (1-10)</label>
             <div class="pain-range">
               <input type="range" id="inputDolorEVA" min="0" max="10" value="${p.dolorEVA || '0'}" step="1" style="flex:1;">
               <span class="pain-value" id="painValueDisplay">${p.dolorEVA || '0'}</span>
@@ -662,17 +886,129 @@
         </div>
         <div class="input-group">
           <label>🔍 Causa de la patología</label>
-          <input type="text" id="inputCausa" value="${escapeHtml(p.causaPatologia)}" placeholder="Origen o causa">
+          <input type="text" id="inputCausa" value="${escapeHtml(p.causaPatologia)}" placeholder="Origen o causa de la patología">
         </div>
         <div class="input-group">
-          <label>📍 Lugar de la patología (texto)</label>
-          <input type="text" id="inputLugar" value="${escapeHtml(p.lugarPatologia)}" placeholder="Ej: miembro inferior derecho, fosa poplítea">
+          <label>📍 Lugar de la patología</label>
+          <input type="text" id="inputLugar" value="${escapeHtml(p.lugarPatologia)}" placeholder="Región anatómica afectada">
         </div>
       `;
 
-      // Actualizar anamnesis
       if (anamnesisTextarea) {
         anamnesisTextarea.value = p.anamnesis || '';
       }
 
-    
+      // Event listeners
+      document.getElementById('inputNombres').addEventListener('input', e => currentPatientData.nombres = e.target.value);
+      document.getElementById('inputApellidos').addEventListener('input', e => currentPatientData.apellidos = e.target.value);
+      document.getElementById('inputEdad').addEventListener('input', e => currentPatientData.edad = e.target.value);
+      document.getElementById('inputPeso').addEventListener('input', e => currentPatientData.peso = e.target.value);
+      document.getElementById('inputTalla').addEventListener('input', e => currentPatientData.talla = e.target.value);
+      document.getElementById('inputAntFarm').addEventListener('input', e => currentPatientData.antFarmacologicos = e.target.value);
+      document.getElementById('inputAntPat').addEventListener('input', e => currentPatientData.antPatologicos = e.target.value);
+      document.getElementById('inputPatologia').addEventListener('input', e => currentPatientData.patologia = e.target.value);
+      document.getElementById('inputCausa').addEventListener('input', e => currentPatientData.causaPatologia = e.target.value);
+      document.getElementById('inputLugar').addEventListener('input', e => {
+        currentPatientData.lugarPatologia = e.target.value;
+        // Si el texto coincide con una región, seleccionarla
+        const region = ANATOMY_REGIONS.find(r => r.label.toLowerCase() === e.target.value.toLowerCase());
+        if (region) {
+          selectedRegion = region.id;
+          currentPatientData.anatomyRegion = region.id;
+          renderRegionList();
+          updateMarker();
+        }
+      });
+      
+      const dolorSlider = document.getElementById('inputDolorEVA');
+      const painDisplay = document.getElementById('painValueDisplay');
+      dolorSlider.addEventListener('input', (e) => {
+        currentPatientData.dolorEVA = e.target.value;
+        painDisplay.textContent = e.target.value;
+      });
+    }
+
+    function saveCurrentPatient() {
+      if (!currentPatientData.nombres.trim() && !currentPatientData.apellidos.trim()) {
+        alert('Ingrese al menos nombres o apellidos del paciente.');
+        return;
+      }
+      
+      currentPatientData.anamnesis = anamnesisTextarea.value;
+      currentPatientData.folderId = appData.activeFolderId;
+      
+      const folderId = appData.activeFolderId;
+      if (!appData.patients[folderId]) appData.patients[folderId] = [];
+      
+      if (currentPatientData.id) {
+        const index = appData.patients[folderId].findIndex(p => p.id === currentPatientData.id);
+        if (index !== -1) appData.patients[folderId][index] = { ...currentPatientData };
+      } else {
+        currentPatientData.id = 'pat_' + Date.now();
+        appData.patients[folderId].push({ ...currentPatientData });
+      }
+      
+      saveToStorage();
+      renderPatientList();
+      deletePatientBtn.style.display = 'inline-block';
+      alert('✅ Paciente guardado correctamente.');
+    }
+
+    // Eventos
+    addFolderBtn.addEventListener('click', addNewFolder);
+    saveBtn.addEventListener('click', saveCurrentPatient);
+    newPatientBtn.addEventListener('click', () => {
+      currentPatientData = createEmptyPatient();
+      selectedRegion = null;
+      renderPatientForm();
+      renderRegionList();
+      updateMarker();
+      renderPatientList();
+      deletePatientBtn.style.display = 'none';
+    });
+    deletePatientBtn.addEventListener('click', () => {
+      if (currentPatientData && currentPatientData.id) {
+        deletePatient(currentPatientData.id);
+      }
+    });
+    anamnesisTextarea.addEventListener('input', (e) => {
+      if (currentPatientData) currentPatientData.anamnesis = e.target.value;
+    });
+
+    // Click en diagrama para seleccionar región
+    bodyDiagram.addEventListener('click', (e) => {
+      const target = e.target.closest('[id^="region-"]');
+      if (target) {
+        const regionId = target.id.replace('region-', '');
+        selectedRegion = regionId;
+        currentPatientData.anatomyRegion = regionId;
+        const region = ANATOMY_REGIONS.find(r => r.id === regionId);
+        if (region) {
+          currentPatientData.lugarPatologia = region.label;
+          const lugarInput = document.getElementById('inputLugar');
+          if (lugarInput) lugarInput.value = region.label;
+        }
+        renderRegionList();
+        updateMarker();
+      }
+    });
+
+    // Inicialización
+    function init() {
+      loadFromStorage();
+      renderFolders();
+      currentPatientData = createEmptyPatient();
+      selectedRegion = null;
+      renderPatientList();
+      renderPatientForm();
+      renderRegionList();
+      updateMarker();
+      deletePatientBtn.style.display = 'none';
+    }
+
+    init();
+  })();
+</script>
+</body>
+</html>
+```
