@@ -94,7 +94,7 @@
     } catch (_e) {}
   </script>
   <style>
-    /* Variables para modo claro/oscuro */
+    /* Variables para modo claro/oscuro - NO MODIFICA ESTILOS EXISTENTES */
     :root {
       --bg-primary: #0A1929;
       --bg-container: #0F2B4C;
@@ -117,21 +117,9 @@
       --input-bg: rgba(10, 25, 41, 0.05);
     }
     
-    body {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-    }
-    
-    .card-bg {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border-color);
-    }
-    
     /* Ajustes para integración de elementos funcionales en el diseño */
     .ghost-border {
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(197, 168, 107, 0.15);
     }
     .custom-shadow {
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -149,23 +137,22 @@
     
     /* Estilos para notas clínicas */
     .clinical-note-area {
-      background: var(--input-bg);
-      border: 1px solid var(--border-color);
+      background: rgba(245, 240, 232, 0.03);
+      border: 1px solid rgba(197, 168, 107, 0.2);
       border-radius: 0.5rem;
       padding: 0.75rem;
       min-height: 80px;
       resize: vertical;
       transition: all 0.2s;
-      color: var(--text-primary);
+      color: #F5F0E8;
     }
     .clinical-note-area:focus {
-      border-color: var(--accent);
+      border-color: #C5A86B;
       box-shadow: 0 0 0 2px rgba(197, 168, 107, 0.15);
       outline: none;
     }
     .clinical-note-area::placeholder {
-      color: var(--text-dim);
-      opacity: 0.5;
+      color: rgba(212, 201, 181, 0.5);
     }
     
     /* Estilos para input de fotografía */
@@ -173,7 +160,7 @@
       position: relative;
       width: 100%;
       height: 120px;
-      border: 2px dashed var(--border-color);
+      border: 2px dashed rgba(197, 168, 107, 0.3);
       border-radius: 0.75rem;
       display: flex;
       align-items: center;
@@ -183,7 +170,7 @@
       overflow: hidden;
     }
     .photo-upload-container:hover {
-      border-color: var(--accent);
+      border-color: #C5A86B;
       background: rgba(197, 168, 107, 0.05);
     }
     .photo-upload-container img {
@@ -203,7 +190,48 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      color: var(--text-dim);
+      color: #D4C9B5;
+    }
+    
+    /* Estilos interactivos para el modelo anatómico */
+    #anatomySvg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .marker-dot {
+      position: absolute;
+      background: #BA1A1A;
+      border: 2px solid white;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(186, 26, 26, 0.4);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 4px rgba(186, 26, 26, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(186, 26, 26, 0.2); }
+      100% { box-shadow: 0 0 0 4px rgba(186, 26, 26, 0.4); }
+    }
+    .marker-label {
+      position: absolute;
+      background: #0A1929;
+      color: #F5F0E8;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+      white-space: nowrap;
+      transform: translate(-50%, -150%);
+      pointer-events: none;
+      display: none;
+      z-index: 11;
+      font-weight: 600;
     }
     
     /* Ajustes input range */
@@ -211,7 +239,7 @@
       -webkit-appearance: none;
       height: 6px;
       border-radius: 5px;
-      background: var(--accent);
+      background: #C5A86B;
       outline: none;
     }
     input[type=range]::-webkit-slider-thumb {
@@ -220,14 +248,14 @@
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: var(--text-primary);
+      background: #F5F0E8;
       cursor: pointer;
-      border: 2px solid var(--bg-primary);
+      border: 2px solid #0A1929;
     }
     
     /* Lista de pacientes dinámica */
     .patient-item.active {
-      border-left: 4px solid var(--accent);
+      border-left: 4px solid #C5A86B;
       background: rgba(197, 168, 107, 0.15);
       opacity: 1 !important;
     }
@@ -235,20 +263,19 @@
       transition: all 0.2s;
     }
     .folder-tab.active {
-      background: var(--accent) !important;
+      background: #C5A86B !important;
       color: #0A1929 !important;
-      border-color: var(--accent) !important;
+      border-color: #C5A86B !important;
     }
 
     /* Estilos para el Buscador */
     .search-input {
       transition: all 0.2s;
-      background: var(--input-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-primary);
+      background: rgba(245, 240, 232, 0.05);
+      border: 1px solid rgba(197, 168, 107, 0.3);
     }
     .search-input:focus {
-      border-color: var(--accent);
+      border-color: #C5A86B;
       box-shadow: 0 0 0 2px rgba(197, 168, 107, 0.2);
     }
     .search-clear-btn {
@@ -258,13 +285,46 @@
       display: flex;
     }
     
-    /* Menú de opciones */
+    /* Fondos y bordes generales */
+    body {
+      background: #0A1929;
+      color: #F5F0E8;
+    }
+    
+    .card-bg {
+      background: rgba(15, 43, 76, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(197, 168, 107, 0.2);
+    }
+    
+    /* Toast de notificación */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #C5A86B;
+      color: #0A1929;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      z-index: 1000;
+      animation: slideUp 0.3s ease-out;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @keyframes slideUp {
+      from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+    
+    /* NUEVOS ESTILOS AÑADIDOS - Menú de opciones */
     .options-menu {
       position: absolute;
       top: 100%;
       right: 0;
-      background: var(--bg-container);
-      border: 1px solid var(--border-color);
+      background: #0F2B4C;
+      border: 1px solid rgba(197, 168, 107, 0.2);
       border-radius: 0.75rem;
       box-shadow: 0 8px 32px rgba(0,0,0,0.4);
       min-width: 220px;
@@ -281,72 +341,70 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Toast de notificación */
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: #0A1929;
-      padding: 0.75rem 1.5rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      z-index: 1000;
-      animation: slideUp 0.3s ease-out;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    /* NUEVOS ESTILOS - Botón de opciones de carpeta */
+    .folder-options-btn {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 18px;
+      height: 18px;
+      background: #0F2B4C;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 10px;
+      color: #D4C9B5;
+      transition: all 0.2s;
     }
-    @keyframes slideUp {
-      from { transform: translateX(-50%) translateY(20px); opacity: 0; }
-      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .folder-options-btn:hover {
+      background: #BA1A1A;
+      color: white;
     }
     
-    /* Estilos para inputs en modo claro */
-    .light-mode input[type="text"],
-    .light-mode input[type="number"],
-    .light-mode input[type="tel"],
-    .light-mode textarea {
-      color: #0A1929;
-    }
-    .light-mode input::placeholder,
-    .light-mode textarea::placeholder {
-      color: rgba(10, 25, 41, 0.5);
+    /* NUEVOS ESTILOS - Grupo de pestaña de carpeta */
+    .folder-tab-group {
+      position: relative;
+      display: inline-flex;
+      flex-shrink: 0;
     }
   </style>
 </head>
 <body class="bg-navy-blue text-pearl-white">
 
     <!-- Top App Bar -->
-    <header class="w-full top-0 sticky z-50 bg-navy-container border-b border-gold-accent/20 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16" style="background: var(--bg-container); border-color: var(--border-color);">
+    <header class="w-full top-0 sticky z-50 bg-navy-container border-b border-gold-accent/20 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16">
         <div class="flex items-center gap-xs cursor-pointer" id="resetHomeBtn">
-            <span class="material-symbols-outlined text-gold-accent" style="color: var(--accent);">clinical_notes</span>
-            <h1 class="font-headline-md text-headline-md font-bold text-pearl-white tracking-tight" style="color: var(--text-primary);">FN SISTEM</h1>
+            <span class="material-symbols-outlined text-gold-accent">clinical_notes</span>
+            <h1 class="font-headline-md text-headline-md font-bold text-pearl-white tracking-tight">FN SISTEM</h1>
         </div>
-        <div class="flex items-center gap-xs relative">
-            <button class="text-pearl-dim text-sm flex items-center gap-1 border border-gold-accent/30 px-3 py-1 rounded-full hover:bg-gold-accent/10" id="addFolderBtn" style="color: var(--text-dim); border-color: var(--border-color);">
+        <div class="flex items-center gap-xs">
+            <button class="text-pearl-dim text-sm flex items-center gap-1 border border-gold-accent/30 px-3 py-1 rounded-full hover:bg-gold-accent/10" id="addFolderBtn">
                 <span class="material-symbols-outlined text-sm">create_new_folder</span>
                 <span class="hidden md:inline">Nueva carpeta</span>
             </button>
-            <!-- Botón de menú de opciones -->
-            <button class="text-pearl-dim hover:text-gold-accent transition-colors p-2" id="optionsMenuBtn" style="color: var(--text-dim);">
-                <span class="material-symbols-outlined">more_vert</span>
-            </button>
-            <!-- Menú desplegable -->
-            <div class="options-menu" id="optionsMenu">
-                <div class="p-3 border-b" style="border-color: var(--border-color);">
-                    <p class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-dim);">Opciones del Sistema</p>
-                </div>
-                <button class="w-full text-left px-4 py-3 hover:bg-gold-accent/10 flex items-center gap-3 transition-colors" id="toggleThemeBtn" style="color: var(--text-primary);">
-                    <span class="material-symbols-outlined text-sm">dark_mode</span>
-                    <span>Modo Oscuro / Claro</span>
+            <!-- NUEVO: Botón de menú de tres puntos -->
+            <div class="relative">
+                <button class="text-pearl-dim hover:text-gold-accent transition-colors p-2" id="optionsMenuBtn">
+                    <span class="material-symbols-outlined">more_vert</span>
                 </button>
-                <div class="px-4 py-3 border-t" style="border-color: var(--border-color); color: var(--text-dim);">
-                    <p class="text-xs font-bold uppercase tracking-wider mb-1">Total Expedientes</p>
-                    <p class="text-2xl font-bold" id="totalExpedientes" style="color: var(--accent);">0</p>
+                <!-- NUEVO: Menú desplegable -->
+                <div class="options-menu" id="optionsMenu">
+                    <div class="p-3 border-b border-gold-accent/20">
+                        <p class="text-xs font-bold uppercase tracking-wider text-pearl-dim">Opciones del Sistema</p>
+                    </div>
+                    <button class="w-full text-left px-4 py-3 hover:bg-gold-accent/10 flex items-center gap-3 transition-colors text-pearl-white" id="toggleThemeBtn">
+                        <span class="material-symbols-outlined text-sm">dark_mode</span>
+                        <span>Modo Oscuro / Claro</span>
+                    </button>
+                    <div class="px-4 py-3 border-t border-gold-accent/20 text-pearl-dim">
+                        <p class="text-xs font-bold uppercase tracking-wider mb-1">Total Expedientes</p>
+                        <p class="text-2xl font-bold text-gold-accent" id="totalExpedientes">0</p>
+                    </div>
                 </div>
             </div>
-            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gold-accent" style="border-color: var(--accent);">
+            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gold-accent">
                 <img class="w-full h-full object-cover" alt="Doctor Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj_Yq5pwX1FXglD_04DYbX9ANyR6Wbg3EQ13kPCUeF8UNGmtQCoL9YccJuaMYyk4yMhZ5TfQ-rm91W0EquueKe3Nu_X1JFpchhl7XeuVnP5H9hfZHHgzoOIE776xoeDg5r6OPPZNHBN-JnmnQN0reCQXDNd_z91Z7jnEMVrF_2lo8sCWWGG_yBFLgL3sS8qa4CDR3_CTTAhQ_VBffMZrbWVwl6ywhRrnUjFPtVUR0w39zZly_bKI0fJw">
             </div>
         </div>
@@ -355,33 +413,33 @@
     <main class="pb-24 pt-md px-margin-mobile">
         
         <!-- Folders Nav -->
-        <div class="flex gap-2 overflow-x-auto scroll-hide mb-md pb-1 border-b" id="foldersNav" style="border-color: var(--border-color);">
-            <div class="text-pearl-dim/50 text-sm py-2" style="color: var(--text-dim);">Sin carpetas</div>
+        <div class="flex gap-2 overflow-x-auto scroll-hide mb-md pb-1 border-b border-gold-accent/20" id="foldersNav">
+            <div class="text-pearl-dim/50 text-sm py-2">Sin carpetas</div>
         </div>
 
         <!-- Patient Search / Selection Area -->
         <section class="mb-md">
             <div class="flex items-center justify-between mb-xs">
-                <h2 class="font-label-caps text-label-caps text-pearl-dim uppercase tracking-widest" style="color: var(--text-dim);">CARPETAS Y PACIENTES</h2>
+                <h2 class="font-label-caps text-label-caps text-pearl-dim uppercase tracking-widest">CARPETAS Y PACIENTES</h2>
             </div>
             
             <!-- Barra de Búsqueda -->
             <div class="relative mb-sm">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-pearl-dim/70" style="color: var(--text-dim);">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-pearl-dim/70">
                     <span class="material-symbols-outlined text-sm">search</span>
                 </div>
                 <input type="text" id="patientSearchInput" placeholder="Buscar por nombre, apellido o cédula..." class="w-full bg-navy-container/50 border border-gold-accent/30 rounded-xl py-2.5 pl-10 pr-10 font-body-md text-pearl-white placeholder-pearl-dim/50 focus:outline-none search-input shadow-sm">
-                <button id="clearSearchBtn" class="absolute inset-y-0 right-0 pr-3 flex items-center text-pearl-dim/70 hover:text-error transition-colors search-clear-btn" style="color: var(--text-dim);">
+                <button id="clearSearchBtn" class="absolute inset-y-0 right-0 pr-3 flex items-center text-pearl-dim/70 hover:text-error transition-colors search-clear-btn">
                     <span class="material-symbols-outlined text-sm">close</span>
                 </button>
             </div>
 
             <!-- Lista de Pacientes -->
             <div class="flex gap-sm overflow-x-auto scroll-hide pb-base" id="patientList">
-                <div class="flex-shrink-0 w-full text-center py-4 text-pearl-dim italic text-sm" style="color: var(--text-dim);">Cargando pacientes...</div>
+                <div class="flex-shrink-0 w-full text-center py-4 text-pearl-dim italic text-sm">Cargando pacientes...</div>
             </div>
             
-            <button class="mt-3 w-full py-2 bg-transparent border border-dashed border-gold-accent/50 rounded-xl text-pearl-dim text-sm font-bold hover:bg-gold-accent/10 flex items-center justify-center gap-2" id="newPatientBtn" style="color: var(--text-dim); border-color: var(--border-color);">
+            <button class="mt-3 w-full py-2 bg-transparent border border-dashed border-gold-accent/50 rounded-xl text-pearl-dim text-sm font-bold hover:bg-gold-accent/10 flex items-center justify-center gap-2" id="newPatientBtn">
                 <span class="material-symbols-outlined">add</span>
                 Nuevo paciente
             </button>
@@ -389,21 +447,21 @@
 
         <!-- Main Patient File -->
         <div class="flex flex-col gap-md" id="formPanel">
-            <!-- Patient Personal Info Card (AHORA INCLUYE TRATAMIENTO Y RECETA) -->
+            <!-- Patient Personal Info Card -->
             <div class="card-bg rounded-xl p-md custom-shadow">
                 <div class="flex items-center gap-sm mb-md">
-                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10 flex items-center justify-center text-gold-accent" style="color: var(--accent);">
+                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10 flex items-center justify-center text-gold-accent">
                         <span class="material-symbols-outlined" style="font-size: 32px;">person</span>
                     </div>
                     <div>
-                        <h3 class="font-headline-md text-headline-md text-pearl-white leading-none" style="color: var(--text-primary);">Información General</h3>
-                        <p class="text-xs text-gold-accent mt-xs" style="color: var(--accent);">Expediente Dinámico</p>
+                        <h3 class="font-headline-md text-headline-md text-pearl-white leading-none">Información General</h3>
+                        <p class="text-xs text-gold-accent mt-xs">Expediente Dinámico</p>
                     </div>
                 </div>
                 
                 <!-- Fotografía del paciente -->
                 <div class="mb-md">
-                    <label class="font-label-caps text-label-caps text-pearl-dim block mb-xs" style="color: var(--text-dim);">FOTOGRAFÍA</label>
+                    <label class="font-label-caps text-label-caps text-pearl-dim block mb-xs">FOTOGRAFÍA</label>
                     <div class="photo-upload-container" id="photoUploadContainer" onclick="document.getElementById('photoInput').click()">
                         <div class="upload-placeholder">
                             <span class="material-symbols-outlined text-3xl">add_a_photo</span>
@@ -412,24 +470,21 @@
                         <img id="photoPreview" alt="Foto del paciente">
                         <input type="file" id="photoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
                     </div>
-                    <button class="mt-2 text-xs text-pearl-dim underline hover:text-gold-accent" id="removePhotoBtn" style="display:none; color: var(--text-dim);" onclick="removePhoto()">Eliminar fotografía</button>
+                    <button class="mt-2 text-xs text-pearl-dim underline hover:text-gold-accent" id="removePhotoBtn" style="display:none;" onclick="removePhoto()">Eliminar fotografía</button>
                 </div>
                 
                 <div class="grid grid-cols-2 gap-md" id="patientFormContainer">
                     <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-pearl-dim block" style="color: var(--text-dim);">NOMBRES</label>
-                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputNombres" placeholder="Nombres" data-field="nombres" style="background: var(--input-bg); border-color: var(--border-color); color: var(--text-primary);">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">NOMBRES</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputNombres" placeholder="Nombres" data-field="nombres">
                     </div>
                     <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-pearl-dim block" style="color: var(--text-dim);">APELLIDOS</label>
-                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputApellidos" placeholder="Apellidos" data-field="apellidos" style="background: var(--input-bg); border-color: var(--border-color); color: var(--text-primary);">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">APELLIDOS</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputApellidos" placeholder="Apellidos" data-field="apellidos">
                     </div>
                     <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-pearl-dim block" style="color: var(--text-dim);">CÉDULA</label>
-                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputCedula" placeholder="Cédula" data-field="cedula" style="background: var(--input-bg); border-color: var(--border-color); color: var(--text-primary);">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">CÉDULA</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputCedula" placeholder="Cédula" data-field="cedula">
                     </div>
                     <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-pearl-dim block" style="color: var(--text-dim);">EDAD</label>
-                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="number" id="inputEdad" placeholder="Edad" data-field="edad" style="background: var(--input-bg); border-color: var(--border-color); color: var(--text-primary);">
-                    </div>
         
