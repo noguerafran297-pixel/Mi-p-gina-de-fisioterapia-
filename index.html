@@ -1,1014 +1,300 @@
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>FN SISTEM · Expediente Clínico</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
-      background: linear-gradient(145deg, #f7f9fc 0%, #eef2f6 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      margin: 0;
-    }
-
-    @keyframes fadeSlideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
+<!DOCTYPE html><html class="dark" lang="es"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "tertiary-fixed": "#e3e2e0",
+                    "on-primary-container": "#7a93ba",
+                    "tertiary": "#151716",
+                    "on-background": "#0b1c30",
+                    "tertiary-container": "#2a2b2a",
+                    "surface": "#f8f9ff",
+                    "primary-fixed-dim": "#afc8f1",
+                    "on-secondary-container": "#6b624a",
+                    "on-tertiary-container": "#929290",
+                    "on-secondary-fixed": "#211b09",
+                    "secondary-container": "#ecdfc1",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "outline-variant": "#c4c6cf",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#43474e",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#efe1c4",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#d4e3ff",
+                    "primary": "#001631",
+                    "inverse-surface": "#213145",
+                    "background": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#4e4630",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container": "#e5eeff",
+                    "outline": "#74777f",
+                    "surface-variant": "#d3e4fe",
+                    "on-surface": "#0b1c30",
+                    "on-primary-fixed": "#001c3a",
+                    "primary-container": "#0f2b4c",
+                    "on-primary-fixed-variant": "#2f486a",
+                    "secondary-fixed-dim": "#d2c5a9",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#475f83",
+                    "inverse-primary": "#afc8f1",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary": "#675e46",
+                    "brand-navy": "#0f2b4c",
+                    "brand-gold": "#e2d5b8",
+                    "brand-white": "#fcfbf9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "xl": "64px",
+                    "xs": "8px",
+                    "sm": "16px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "md": "24px",
+                    "lg": "40px",
+                    "container-max": "1200px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["\"Source Sans 3\""],
+                    "headline-lg-mobile": ["Manrope"],
+                    "label-caps": ["\"Source Sans 3\""],
+                    "headline-md": ["Manrope"],
+                    "body-md": ["\"Source Sans 3\""],
+                    "data-tabular": ["\"Source Sans 3\""]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "600"}]
+            }
+          },
+        }
       }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    }catch(_e){}</script></head><body class="bg-primary text-on-primary">
+    <!-- Top App Bar -->
+    <header class="w-full top-0 sticky z-50 bg-primary-container border-b border-on-primary-fixed-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16">
+        <div class="flex items-center gap-xs">
+            <span class="material-symbols-outlined text-primary-fixed-dim" data-icon="clinical_notes" data-original-icon="clinical_notes">clinical_notes</span>
+            <h1 class="font-headline-md text-headline-md font-bold text-primary-fixed tracking-tight">FN SISTEM</h1>
+        </div>
+        <div class="w-10 h-10 rounded-full overflow-hidden border border-secondary">
+            <img class="w-full h-full object-cover" data-alt="A professional medical portrait of a specialized doctor in a clean clinical setting. The doctor is wearing a crisp white coat and a stethoscope, looking directly at the camera with a reassuring smile. The background is a soft-focus high-end medical office with primary navy and gold beige accents, conveying authority and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj_Yq5pwX1FXglD_04DYbX9ANyR6Wbg3EQ13kPCUeF8UNGmtQCoL9YccJuaMYyk4yMhZ5TfQ-rm91W0EquueKe3Nu_X1JFpchhl7XeuVnP5H9hfZHHgzoOIE776xoeDg5r6OPPZNHBN-JnmnQN0reCQXDNd_z91Z7jnEMVrF_2lo8sCWWGG_yBFLgL3sS8qa4CDR3_CTTAhQ_VBffMZrbWVwl6ywhRrnUjFPtVUR0w39zZly_bKI0fJw">
+        </div>
+    </header>
 
-    .main-container {
-      width: 100%;
-      max-width: 1200px;
-      animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    <main class="pb-24 pt-md">
+        <!-- Patient Search / Selection Area -->
+        <section class="px-margin-mobile mb-md">
+            <div class="flex items-center justify-between mb-xs">
+                <h2 class="font-label-caps text-label-caps text-tertiary-fixed-dim uppercase tracking-widest">PACIENTES RECIENTES</h2>
+                <button class="text-primary-fixed-dim font-bold text-sm">Ver todos</button>
+            </div>
+            <div class="flex gap-sm overflow-x-auto scroll-hide pb-base">
+                <!-- Active Patient Card-->
+                <div class="flex-shrink-0 w-48 bg-primary-container ghost-border rounded-xl p-sm custom-shadow border-l-4 border-l-primary-fixed">
+                    <p class="font-headline-md text-sm font-bold text-primary-fixed truncate">Ricardo Espinoza</p>
+                    <p class="text-xs text-on-primary-container mb-xs">ID: 10452-9</p>
+                    <div class="flex items-center gap-xs mt-xs">
+                        <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                        <span class="text-[10px] font-bold text-primary-fixed-dim">CONSULTA ACTIVA</span>
+                    </div>
+                </div>
+                <!-- Other Patients -->
+                <div class="flex-shrink-0 w-40 bg-primary-container/40 ghost-border rounded-xl p-sm opacity-60">
+                    <p class="font-headline-md text-sm font-bold text-surface-dim truncate">Marta Jiménez</p>
+                    <p class="text-xs text-on-primary-container mb-xs">ID: 89431-2</p>
+                </div>
+                <div class="flex-shrink-0 w-40 bg-primary-container/40 ghost-border rounded-xl p-sm opacity-60">
+                    <p class="font-headline-md text-sm font-bold text-surface-dim truncate">Javier Solís</p>
+                    <p class="text-xs text-on-primary-container mb-xs">ID: 12567-4</p>
+                </div>
+            </div>
+        </section>
 
-    .clinical-card {
-      background: linear-gradient(135deg, #ffffff 0%, #f5f7fd 100%);
-      border-radius: 2.5rem;
-      box-shadow: 0 25px 50px -12px rgba(0, 20, 60, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(173, 192, 230, 0.4);
-      padding: 2rem;
-      transition: all 0.2s ease;
-    }
+        <!-- Main Patient File -->
+        <div class="px-margin-mobile flex flex-col gap-md">
+            <!-- Patient Personal Info Card -->
+            <div class="bg-primary-container rounded-xl ghost-border p-md custom-shadow">
+                <div class="flex items-center gap-sm mb-md">
+                    <div class="w-12 h-12 rounded-lg bg-on-primary-container/10 flex items-center justify-center text-primary-fixed-dim">
+                        <span class="material-symbols-outlined" style="font-size: 32px;">person</span>
+                    </div>
+                    <div>
+                        <h3 class="font-headline-md text-headline-md text-primary-fixed leading-none">Información General</h3>
+                        <p class="text-xs text-on-primary-container mt-xs">Expediente No. 2024-0582</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-md">
+                    <div class="space-y-base">
+                        <label class="font-label-caps text-label-caps text-on-primary-container block">NOMBRE COMPLETO</label>
+                        <p class="font-body-md text-primary-fixed font-semibold">Ricardo Espinoza</p>
+                    </div>
+                    <div class="space-y-base">
+                        <label class="font-label-caps text-label-caps text-on-primary-container block">CÉDULA DE IDENTIDAD</label>
+                        <p class="font-body-md text-primary-fixed font-semibold">1.234.567-8</p>
+                    </div>
+                    <div class="space-y-base">
+                        <label class="font-label-caps text-label-caps text-on-primary-container block">TELÉFONO</label>
+                        <p class="font-body-md text-primary-fixed font-semibold">+598 99 123 456</p>
+                    </div>
+                    <div class="space-y-base">
+                        <label class="font-label-caps text-label-caps text-on-primary-container block">EDAD / FECHA NAC.</label>
+                        <p class="font-body-md text-primary-fixed font-semibold">42 años (15/05/81)</p>
+                    </div>
+                </div>
+            </div>
 
-    .brand-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+            <!-- Medical Reason & Intensity -->
+            <div class="bg-primary-container rounded-xl ghost-border p-md custom-shadow">
+                <div class="flex items-center gap-sm mb-md">
+                    <div class="w-12 h-12 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary-fixed-dim">
+                        <span class="material-symbols-outlined" style="font-size: 32px;">stethoscope</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-primary-fixed">Detalle de Consulta</h3>
+                </div>
+                <div class="space-y-lg">
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-on-primary-container block">MOTIVO DE CONSULTA</label>
+                        <input class="w-full border-0 border-b border-secondary/40 bg-transparent focus:ring-0 focus:border-primary-fixed px-0 font-body-md text-primary-fixed placeholder-on-primary-container/50" type="text" value="Dolor lumbar crónico tras actividad física">
+                    </div>
+                    <div class="space-y-md">
+                        <div class="flex justify-between items-center">
+                            <label class="font-label-caps text-label-caps text-on-primary-container block">INTENSIDAD DEL DOLOR</label>
+                            <span class="bg-primary-fixed text-primary px-3 py-1 rounded-full text-xs font-bold" id="painValue">7 / 10</span>
+                        </div>
+                        <input class="w-full h-2 rounded-lg appearance-none cursor-pointer pain-slider" max="10" min="0" oninput="document.getElementById('painValue').innerText = this.value + ' / 10'" step="1" type="range" value="7">
+                        <div class="flex justify-between text-[10px] font-bold text-on-primary-container uppercase tracking-tighter">
+                            <span class="">Sin dolor</span>
+                            <span class="">Moderado</span>
+                            <span class="">Insuportable</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+            <!-- Anatomical Model Section -->
+            <div class="bg-primary-container rounded-xl ghost-border p-md custom-shadow overflow-hidden">
+                <div class="flex items-center justify-between mb-md">
+                    <div class="flex items-center gap-sm">
+                        <div class="w-12 h-12 rounded-lg bg-on-primary-container/10 flex items-center justify-center text-primary-fixed-dim">
+                            <span class="material-symbols-outlined" style="font-size: 32px;">accessibility_new</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary-fixed">Modelo Anatómico</h3>
+                    </div>
+                    <div class="flex gap-xs">
+                        <button class="bg-primary-fixed text-primary px-3 py-1 rounded-full text-[10px] font-bold">FRONTAL</button>
+                        <button class="bg-primary/50 text-primary-fixed-dim px-3 py-1 rounded-full text-[10px] font-bold border border-outline-variant/30">LATERAL</button>
+                    </div>
+                </div>
+                <!-- Model Content -->
+                <div class="relative w-full aspect-[4/5] bg-on-background rounded-lg flex items-center justify-center overflow-hidden border border-outline-variant/20">
+                    <!-- Anatomy Placeholder Image -->
+                    <img class="h-full object-contain mix-blend-screen opacity-90 contrast-125" alt="Anatomical illustration showing front and side views of a human figure with height proportions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxgHb-Sx8uFIfDDSj480HCnCut0AbzyOCSBRRpVPaWiDM5Pm2aLztFJJiZOp0mHm9B4SD8xkaOECK6fyfmB5cTMDlK6d6wI_o9YC8fVqJhwUba8sOhVEI52FstLIt_e3ijDio1CceYgoYNf5-nRzXxudXzckCTEBNVMt6elCMwQMj5H0UhtCid1Y4w6SRwHzeIoFAhN9qxNLmwUVdvl16WHjZqk9Sy2MzaVJnrLVCBMpJJ_5PBWiMcuxI9Mu2h8BLP_OQ">
+                    <!-- Interactive Markers -->
+                    <div class="absolute top-[60%] left-[50%] -translate-x-1/2 -translate-y-1/2">
+                        <div class="relative flex items-center justify-center">
+                            <span class="absolute w-12 h-12 bg-error/30 rounded-full animate-ping"></span>
+                            <span class="w-4 h-4 bg-error rounded-full border-2 border-white shadow-lg"></span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-md right-md bg-primary-container/90 backdrop-blur-sm p-xs rounded border border-outline-variant/30 text-[10px] text-primary-fixed font-bold flex flex-col gap-1">
+                        <div class="flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-error"></span> Zona Focal (L4-L5)
+                        </div>
+                        <div class="flex items-center gap-1 opacity-50">
+                            <span class="w-2 h-2 rounded-full bg-primary-fixed"></span> Referencia
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    .fn-letters {
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #0b2b5e, #1f4e8c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 4px 6px rgba(0,80,150,0.2));
-      animation: softGlow 2s infinite alternate;
-    }
+            <!-- Observations -->
+            <div class="bg-primary-container rounded-xl ghost-border p-md custom-shadow">
+                <div class="flex items-center gap-sm mb-md">
+                    <div class="w-12 h-12 rounded-lg bg-on-primary-container/10 flex items-center justify-center text-primary-fixed-dim">
+                        <span class="material-symbols-outlined" style="font-size: 32px;">edit_note</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-primary-fixed">Observaciones</h3>
+                </div>
+                <textarea class="w-full min-h-[120px] border-outline-variant/30 rounded-lg bg-primary/40 focus:ring-primary-fixed focus:border-primary-fixed p-md font-body-md text-primary-fixed placeholder-on-primary-container/40" placeholder="Escriba aquí los detalles adicionales del diagnóstico, historial previo o recomendaciones específicas de tratamiento..."></textarea>
+                <div class="mt-md flex gap-sm">
+                    <button class="flex-1 bg-primary-fixed text-primary font-bold py-3 rounded-lg flex items-center justify-center gap-xs active:scale-95 transition-transform">
+                        <span class="material-symbols-outlined">save</span>
+                        GUARDAR EXPEDIENTE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    @keyframes softGlow {
-      0% { filter: drop-shadow(0 4px 8px rgba(0,112,184,0.2)); }
-      100% { filter: drop-shadow(0 6px 14px rgba(0,112,184,0.4)); }
-    }
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 w-full z-50 bg-primary-container border-t border-on-primary-fixed-variant flex justify-around items-center h-20 pb-safe">
+        <!-- Folders -->
+        <a class="flex flex-col items-center justify-center text-on-primary-container hover:text-primary-fixed transition-colors active:scale-95 transition-transform duration-150" href="#">
+            <span class="material-symbols-outlined">folder_shared</span>
+            <span class="font-label-caps text-[10px] mt-1">Folders</span>
+        </a>
+        <!-- Patients (Active) -->
+        <a class="flex flex-col items-center justify-center text-primary-fixed-dim bg-on-primary-container/20 rounded-full px-6 py-1 active:scale-95 transition-transform duration-150" href="#">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+            <span class="font-label-caps text-[10px] mt-1 font-bold">Pacientes</span>
+        </a>
+        <!-- Anatomy -->
+        <a class="flex flex-col items-center justify-center text-on-primary-container hover:text-primary-fixed transition-colors active:scale-95 transition-transform duration-150" href="#">
+            <span class="material-symbols-outlined">accessibility_new</span>
+            <span class="font-label-caps text-[10px] mt-1">Anatomía</span>
+        </a>
+        <!-- Settings -->
+        <a class="flex flex-col items-center justify-center text-on-primary-container hover:text-primary-fixed transition-colors active:scale-95 transition-transform duration-150" href="#">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-label-caps text-[10px] mt-1">Ajustes</span>
+        </a>
+    </nav>
 
-    .sistem-text {
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: #1f4e8c;
-      letter-spacing: 0.3rem;
-      text-transform: uppercase;
-      margin-left: 0.2rem;
-    }
-
-    .btn-add-folder {
-      background: rgba(255,255,255,0.7);
-      border: 1px solid #cbd6e8;
-      color: #1f4e8c;
-      font-weight: 600;
-      padding: 0.7rem 1.4rem;
-      border-radius: 3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 4px 10px rgba(0,32,64,0.08);
-      cursor: pointer;
-      transition: 0.25s;
-      font-size: 0.9rem;
-    }
-
-    .btn-add-folder:hover {
-      background: white;
-      border-color: #1f4e8c;
-      box-shadow: 0 10px 18px -8px rgba(20,80,150,0.3);
-      transform: scale(1.02);
-    }
-
-    .folders-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      align-items: center;
-    }
-
-    .folder-tab {
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid #cfdef5;
-      padding: 0.5rem 1.2rem;
-      border-radius: 2.5rem;
-      font-weight: 600;
-      color: #103a5c;
-      cursor: pointer;
-      transition: 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: #f0f4fe;
-      font-size: 0.9rem;
-    }
-
-    .folder-tab.active {
-      background: #1f4e8c;
-      border-color: #0e3a6b;
-      color: white;
-      box-shadow: 0 8px 16px -6px rgba(20,80,160,0.4);
-    }
-
-    .delete-folder {
-      margin-left: 0.3rem;
-      font-weight: bold;
-      border: none;
-      background: transparent;
-      color: #7b8aa6;
-      cursor: pointer;
-      font-size: 1.1rem;
-      line-height: 1;
-      transition: 0.2s;
-    }
-
-    .folder-tab.active .delete-folder {
-      color: rgba(255,255,255,0.8);
-    }
-
-    .delete-folder:hover {
-      color: #c00;
-    }
-
-    .main-layout {
-      display: grid;
-      grid-template-columns: 250px 1fr;
-      gap: 1.5rem;
-    }
-
-    .patient-list-panel {
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(10px);
-      border-radius: 1.5rem;
-      padding: 1rem;
-      border: 1px solid #dce6f5;
-      max-height: 600px;
-      overflow-y: auto;
-    }
-
-    .patient-list-title {
-      font-weight: 700;
-      color: #1f4e8c;
-      margin-bottom: 0.8rem;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-    }
-
-    .patient-item {
-      padding: 0.7rem 1rem;
-      margin-bottom: 0.4rem;
-      background: white;
-      border-radius: 1rem;
-      cursor: pointer;
-      border: 1px solid #e0e8f5;
-      font-size: 0.85rem;
-      transition: 0.2s;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .patient-item:hover {
-      background: #eef3ff;
-      border-color: #1f4e8c;
-    }
-
-    .patient-item.active {
-      background: #1f4e8c;
-      color: white;
-      border-color: #0e3a6b;
-    }
-
-    .delete-patient {
-      color: #c00;
-      cursor: pointer;
-      font-weight: bold;
-      opacity: 0.6;
-      transition: 0.2s;
-    }
-
-    .delete-patient:hover {
-      opacity: 1;
-    }
-
-    .new-patient-btn {
-      width: 100%;
-      padding: 0.6rem;
-      background: #e6effb;
-      border: 1px dashed #1f4e8c;
-      color: #1f4e8c;
-      border-radius: 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      margin-top: 0.5rem;
-      transition: 0.2s;
-    }
-
-    .new-patient-btn:hover {
-      background: #d0e0ff;
-    }
-
-    .form-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .row-duo {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .input-group {
-      flex: 1 1 180px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    label {
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: #1e3b5a;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-    }
-
-    input, textarea, select {
-      background: #ffffff;
-      border: 1px solid #d9e2f0;
-      border-radius: 1rem;
-      padding: 0.7rem 1rem;
-      font-size: 0.9rem;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
-      transition: 0.2s;
-      outline: none;
-      color: #0b2b4a;
-      font-family: inherit;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      border-color: #1f4e8c;
-      box-shadow: 0 0 0 3px rgba(31,78,140,0.15);
-    }
-
-    .anatomy-section {
-      background: #f9fcff;
-      border-radius: 1.5rem;
-      padding: 1.2rem;
-      border: 1px solid #dce6f5;
-    }
-
-    .anatomy-title {
-      font-weight: 600;
-      color: #103a5c;
-      margin-bottom: 0.8rem;
-    }
-
-    .anatomy-layout {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .body-diagram {
-      flex: 1;
-      min-width: 280px;
-      background: linear-gradient(180deg, #e6edf8 0%, #dbe5f5 100%);
-      border-radius: 1.5rem;
-      padding: 1rem;
-      cursor: crosshair;
-      position: relative;
-    }
-
-    .region-list {
-      flex: 0 0 200px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      max-height: 400px;
-      overflow-y: auto;
-    }
-
-    .region-btn {
-      padding: 0.5rem 1rem;
-      background: white;
-      border: 1px solid #d9e2f0;
-      border-radius: 0.8rem;
-      cursor: pointer;
-      font-size: 0.8rem;
-      text-align: left;
-      transition: 0.2s;
-    }
-
-    .region-btn:hover {
-      background: #eef3ff;
-      border-color: #1f4e8c;
-    }
-
-    .region-btn.selected {
-      background: #1f4e8c;
-      color: white;
-      border-color: #0e3a6b;
-    }
-
-    .marker-dot {
-      position: absolute;
-      background: #d42e2e;
-      border: 2px solid white;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      box-shadow: 0 0 0 3px rgba(200,30,30,0.4);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      display: none;
-      z-index: 10;
-    }
-
-    .marker-label {
-      position: absolute;
-      background: rgba(20,30,50,0.9);
-      color: white;
-      font-size: 0.7rem;
-      padding: 0.2rem 0.7rem;
-      border-radius: 1rem;
-      white-space: nowrap;
-      transform: translate(-50%, -150%);
-      pointer-events: none;
-      display: none;
-      z-index: 11;
-    }
-
-    .pain-range {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .pain-value {
-      font-weight: 700;
-      color: #1f4e8c;
-      background: #e6effb;
-      padding: 0.2rem 0.9rem;
-      border-radius: 2rem;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    .footer-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.8rem;
-      margin-top: 1rem;
-    }
-
-    .save-btn, .delete-patient-btn {
-      padding: 0.8rem 2rem;
-      border-radius: 2.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.25s;
-      border: none;
-      font-size: 0.95rem;
-    }
-
-    .save-btn {
-      background: #1f4e8c;
-      color: white;
-      box-shadow: 0 10px 18px -8px #1f4e8c80;
-    }
-
-    .save-btn:hover {
-      background: #0e3a6b;
-      transform: translateY(-2px);
-    }
-
-    .delete-patient-btn {
-      background: white;
-      color: #c00;
-      border: 1px solid #fcc;
-    }
-
-    .delete-patient-btn:hover {
-      background: #fff5f5;
-    }
-
-    @media (max-width: 800px) {
-      .main-layout {
-        grid-template-columns: 1fr;
-      }
-      .anatomy-layout {
-        flex-direction: column;
-      }
-      .region-list {
-        flex-direction: row;
-        flex-wrap: wrap;
-        max-height: none;
-      }
-    }
-  </style>
-</head>
-<body>
-<div class="main-container">
-  <div class="clinical-card">
-    
-    <div class="brand-header">
-      <div class="logo-area">
-        <span class="fn-letters">FN</span>
-        <span class="sistem-text">SISTEM</span>
-      </div>
-      <button class="btn-add-folder" id="addFolderBtn">
-        <span>+</span> Nueva carpeta
-      </button>
+    <!-- Floating Action Button -->
+    <div class="fixed right-margin-mobile bottom-28 z-40">
+        <button class="w-14 h-14 bg-primary-fixed text-primary rounded-full flex items-center justify-center shadow-2xl border-4 border-primary">
+            <span class="material-symbols-outlined" style="font-size: 32px;">add</span>
+        </button>
     </div>
 
-    <div id="foldersContainer" class="folders-container"></div>
-
-    <div class="main-layout">
-      <!-- Panel de lista de pacientes -->
-      <div class="patient-list-panel" id="patientListPanel">
-        <div class="patient-list-title">📋 Pacientes</div>
-        <div id="patientList"></div>
-        <button class="new-patient-btn" id="newPatientBtn">+ Nuevo paciente</button>
-      </div>
-
-      <!-- Panel de formulario -->
-      <div class="form-panel" id="formPanel">
-        <div id="patientFormContainer">
-          <!-- Renderizado dinámico -->
-        </div>
-
-        <!-- Anatomía interactiva -->
-        <div class="anatomy-section">
-          <div class="anatomy-title">🦴 Localización anatómica</div>
-          <div class="anatomy-layout">
-            <div class="body-diagram" id="bodyDiagram">
-              <svg viewBox="0 0 300 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-height:450px;">
-                <!-- Cabeza -->
-                <ellipse cx="150" cy="35" rx="22" ry="28" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-cabeza"/>
-                <!-- Cuello -->
-                <rect x="138" y="58" width="24" height="20" rx="5" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-cuello"/>
-                <!-- Tórax -->
-                <rect x="110" y="75" width="80" height="100" rx="15" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-torax"/>
-                <!-- Abdomen -->
-                <rect x="115" y="170" width="70" height="70" rx="12" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-abdomen"/>
-                <!-- Brazo izquierdo -->
-                <rect x="65" y="80" width="22" height="110" rx="11" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-brazo-izq"/>
-                <!-- Antebrazo izquierdo -->
-                <rect x="68" y="185" width="18" height="90" rx="9" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-antebrazo-izq"/>
-                <!-- Mano izquierda -->
-                <ellipse cx="77" cy="285" rx="14" ry="10" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-mano-izq"/>
-                <!-- Brazo derecho -->
-                <rect x="213" y="80" width="22" height="110" rx="11" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-brazo-der"/>
-                <!-- Antebrazo derecho -->
-                <rect x="214" y="185" width="18" height="90" rx="9" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-antebrazo-der"/>
-                <!-- Mano derecha -->
-                <ellipse cx="223" cy="285" rx="14" ry="10" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-mano-der"/>
-                <!-- Muslo izquierdo -->
-                <rect x="110" y="245" width="28" height="100" rx="14" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-muslo-izq"/>
-                <!-- Rodilla izquierda -->
-                <ellipse cx="124" cy="350" rx="18" ry="14" fill="#d9e2f0" stroke="#2c3e50" stroke-width="2" id="region-rodilla-izq"/>
-                <!-- Pantorrilla izquierda -->
-                <rect x="112" y="360" width="24" height="80" rx="12" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-pantorrilla-izq"/>
-                <!-- Pie izquierdo -->
-                <ellipse cx="124" cy="450" rx="20" ry="10" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-pie-izq"/>
-                <!-- Muslo derecho -->
-                <rect x="162" y="245" width="28" height="100" rx="14" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-muslo-der"/>
-                <!-- Rodilla derecha -->
-                <ellipse cx="176" cy="350" rx="18" ry="14" fill="#d9e2f0" stroke="#2c3e50" stroke-width="2" id="region-rodilla-der"/>
-                <!-- Pantorrilla derecha -->
-                <rect x="164" y="360" width="24" height="80" rx="12" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-pantorrilla-der"/>
-                <!-- Pie derecho -->
-                <ellipse cx="176" cy="450" rx="20" ry="10" fill="#e8ecf5" stroke="#2c3e50" stroke-width="2" id="region-pie-der"/>
-              </svg>
-              <div id="anatomyMarker" class="marker-dot"></div>
-              <div id="anatomyLabel" class="marker-label"></div>
-            </div>
-            <div class="region-list" id="regionList"></div>
-          </div>
-        </div>
-
-        <!-- Anamnesis -->
-        <div class="input-group">
-          <label>📋 Anamnesis</label>
-          <textarea id="anamnesisText" placeholder="Redacte la anamnesis detallada del paciente..."></textarea>
-        </div>
-
-        <div class="footer-actions">
-          <button class="delete-patient-btn" id="deletePatientBtn" style="display:none;">🗑 Eliminar paciente</button>
-          <button class="save-btn" id="savePatientBtn">💾 Guardar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  (function() {
-    const STORAGE_KEY = 'fn_sistem_patients_v2';
-    const DEFAULT_FOLDER_ID = 'folder_001';
-
-    // Regiones anatómicas
-    const ANATOMY_REGIONS = [
-      { id: 'cabeza', label: 'Cabeza' },
-      { id: 'cuello', label: 'Cuello' },
-      { id: 'torax', label: 'Tórax' },
-      { id: 'abdomen', label: 'Abdomen' },
-      { id: 'brazo-izq', label: 'Brazo izquierdo' },
-      { id: 'antebrazo-izq', label: 'Antebrazo izquierdo' },
-      { id: 'mano-izq', label: 'Mano izquierda' },
-      { id: 'brazo-der', label: 'Brazo derecho' },
-      { id: 'antebrazo-der', label: 'Antebrazo derecho' },
-      { id: 'mano-der', label: 'Mano derecha' },
-      { id: 'muslo-izq', label: 'Muslo izquierdo' },
-      { id: 'rodilla-izq', label: 'Rodilla izquierda' },
-      { id: 'pantorrilla-izq', label: 'Pantorrilla izquierda' },
-      { id: 'pie-izq', label: 'Pie izquierdo' },
-      { id: 'muslo-der', label: 'Muslo derecho' },
-      { id: 'rodilla-der', label: 'Rodilla derecha' },
-      { id: 'pantorrilla-der', label: 'Pantorrilla derecha' },
-      { id: 'pie-der', label: 'Pie derecho' }
-    ];
-
-    let appData = {
-      folders: [{ id: DEFAULT_FOLDER_ID, name: 'Pacientes Generales' }],
-      activeFolderId: DEFAULT_FOLDER_ID,
-      patients: { [DEFAULT_FOLDER_ID]: [] }
-    };
-
-    let currentPatientData = null;
-    let selectedRegion = null;
-
-    // Elementos DOM
-    const foldersContainer = document.getElementById('foldersContainer');
-    const patientListDiv = document.getElementById('patientList');
-    const patientFormContainer = document.getElementById('patientFormContainer');
-    const addFolderBtn = document.getElementById('addFolderBtn');
-    const saveBtn = document.getElementById('savePatientBtn');
-    const deletePatientBtn = document.getElementById('deletePatientBtn');
-    const newPatientBtn = document.getElementById('newPatientBtn');
-    const anamnesisTextarea = document.getElementById('anamnesisText');
-    const bodyDiagram = document.getElementById('bodyDiagram');
-    const markerDot = document.getElementById('anatomyMarker');
-    const markerLabel = document.getElementById('anatomyLabel');
-    const regionListDiv = document.getElementById('regionList');
-
-    function loadFromStorage() {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          if (parsed.folders && parsed.patients && parsed.activeFolderId) {
-            appData = parsed;
-          }
-        } catch (e) {}
-      }
-      if (!appData.folders.length) {
-        appData.folders = [{ id: DEFAULT_FOLDER_ID, name: 'Pacientes Generales' }];
-        appData.activeFolderId = DEFAULT_FOLDER_ID;
-        appData.patients[DEFAULT_FOLDER_ID] = [];
-      }
-      if (!appData.activeFolderId || !appData.folders.find(f => f.id === appData.activeFolderId)) {
-        appData.activeFolderId = appData.folders[0].id;
-      }
-    }
-
-    function saveToStorage() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
-    }
-
-    function escapeHtml(text) {
-      return String(text).replace(/[&<>"]/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        if (m === '"') return '&quot;';
-        return m;
-      });
-    }
-
-    function createEmptyPatient() {
-      return {
-        id: null,
-        folderId: appData.activeFolderId,
-        nombres: '',
-        apellidos: '',
-        edad: '',
-        peso: '',
-        talla: '',
-        antFarmacologicos: '',
-        antPatologicos: '',
-        patologia: '',
-        dolorEVA: '0',
-        causaPatologia: '',
-        lugarPatologia: '',
-        anatomyRegion: null,
-        anatomyCoord: null,
-        anamnesis: ''
-      };
-    }
-
-    // Renderizar carpetas
-    function renderFolders() {
-      foldersContainer.innerHTML = '';
-      appData.folders.forEach(folder => {
-        const tab = document.createElement('div');
-        tab.className = `folder-tab ${folder.id === appData.activeFolderId ? 'active' : ''}`;
-        tab.innerHTML = `
-          <span>📁 ${escapeHtml(folder.name)}</span>
-          ${appData.folders.length > 1 ? '<button class="delete-folder">✕</button>' : ''}
-        `;
-        tab.addEventListener('click', (e) => {
-          if (e.target.classList.contains('delete-folder')) {
-            e.stopPropagation();
-            deleteFolder(folder.id);
-            return;
-          }
-          setActiveFolder(folder.id);
+    <script class="">
+        // Micro-interactions and UX logic
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('touchstart', function() {
+                this.classList.add('opacity-70');
+            });
+            el.addEventListener('touchend', function() {
+                this.classList.remove('opacity-70');
+            });
         });
-        foldersContainer.appendChild(tab);
-      });
-    }
-
-    function setActiveFolder(folderId) {
-      if (appData.activeFolderId === folderId) return;
-      appData.activeFolderId = folderId;
-      saveToStorage();
-      renderFolders();
-      renderPatientList();
-      currentPatientData = createEmptyPatient();
-      selectedRegion = null;
-      renderPatientForm();
-      renderRegionList();
-      updateMarker();
-    }
-
-    function deleteFolder(folderId) {
-      if (appData.folders.length <= 1) {
-        alert('Debe existir al menos una carpeta.');
-        return;
-      }
-      if (!confirm('¿Eliminar esta carpeta y todos sus pacientes?')) return;
-      appData.folders = appData.folders.filter(f => f.id !== folderId);
-      delete appData.patients[folderId];
-      if (appData.activeFolderId === folderId) {
-        appData.activeFolderId = appData.folders[0].id;
-      }
-      saveToStorage();
-      renderFolders();
-      renderPatientList();
-      currentPatientData = createEmptyPatient();
-      selectedRegion = null;
-      renderPatientForm();
-      renderRegionList();
-      updateMarker();
-    }
-
-    function addNewFolder() {
-      const name = prompt('Nombre de la nueva carpeta:');
-      if (!name || !name.trim()) return;
-      const trimmed = name.trim();
-      const newId = 'folder_' + Date.now();
-      appData.folders.push({ id: newId, name: trimmed });
-      appData.patients[newId] = [];
-      appData.activeFolderId = newId;
-      saveToStorage();
-      renderFolders();
-      renderPatientList();
-      currentPatientData = createEmptyPatient();
-      selectedRegion = null;
-      renderPatientForm();
-      renderRegionList();
-      updateMarker();
-    }
-
-    // Lista de pacientes
-    function renderPatientList() {
-      const folderId = appData.activeFolderId;
-      const patients = appData.patients[folderId] || [];
-      patientListDiv.innerHTML = '';
-      
-      patients.forEach(p => {
-        const div = document.createElement('div');
-        div.className = `patient-item ${currentPatientData && currentPatientData.id === p.id ? 'active' : ''}`;
-        div.innerHTML = `
-          <span>${escapeHtml(p.nombres || p.apellidos || 'Sin nombre')}</span>
-          <span class="delete-patient" data-id="${p.id}">✕</span>
-        `;
-        div.addEventListener('click', (e) => {
-          if (e.target.classList.contains('delete-patient')) {
-            e.stopPropagation();
-            deletePatient(p.id);
-            return;
-          }
-          loadPatient(p);
-        });
-        patientListDiv.appendChild(div);
-      });
-    }
-
-    function loadPatient(patient) {
-      currentPatientData = { ...patient };
-      selectedRegion = patient.anatomyRegion || null;
-      renderPatientForm();
-      renderRegionList();
-      updateMarker();
-      renderPatientList();
-      deletePatientBtn.style.display = 'inline-block';
-    }
-
-    function deletePatient(patientId) {
-      if (!confirm('¿Eliminar este paciente?')) return;
-      const folderId = appData.activeFolderId;
-      appData.patients[folderId] = appData.patients[folderId].filter(p => p.id !== patientId);
-      saveToStorage();
-      if (currentPatientData && currentPatientData.id === patientId) {
-        currentPatientData = createEmptyPatient();
-        selectedRegion = null;
-        renderPatientForm();
-        renderRegionList();
-        updateMarker();
-        deletePatientBtn.style.display = 'none';
-      }
-      renderPatientList();
-    }
-
-    // Lista de regiones anatómicas
-    function renderRegionList() {
-      regionListDiv.innerHTML = '';
-      ANATOMY_REGIONS.forEach(region => {
-        const btn = document.createElement('div');
-        btn.className = `region-btn ${selectedRegion === region.id ? 'selected' : ''}`;
-        btn.textContent = region.label;
-        btn.addEventListener('click', () => {
-          selectedRegion = region.id;
-          currentPatientData.anatomyRegion = region.id;
-          currentPatientData.lugarPatologia = region.label;
-          renderRegionList();
-          updateMarker();
-          // Actualizar campo de lugar
-          const lugarInput = document.getElementById('inputLugar');
-          if (lugarInput) lugarInput.value = region.label;
-        });
-        regionListDiv.appendChild(btn);
-      });
-    }
-
-    function updateMarker() {
-      if (!selectedRegion) {
-        markerDot.style.display = 'none';
-        markerLabel.style.display = 'none';
-        return;
-      }
-      const svgEl = document.querySelector(`#region-${selectedRegion}`);
-      if (!svgEl) {
-        markerDot.style.display = 'none';
-        markerLabel.style.display = 'none';
-        return;
-      }
-      const diagramRect = bodyDiagram.getBoundingClientRect();
-      const svgRect = bodyDiagram.querySelector('svg').getBoundingClientRect();
-      const bbox = svgEl.getBBox();
-      const svgElRect = svgEl.getBoundingClientRect();
-      
-      const cx = bbox.x + bbox.width / 2;
-      const cy = bbox.y + bbox.height / 2;
-      
-      const percentX = ((svgElRect.left - svgRect.left) + svgElRect.width / 2) / svgRect.width * 100;
-      const percentY = ((svgElRect.top - svgRect.top) + svgElRect.height / 2) / svgRect.height * 100;
-      
-      markerDot.style.display = 'block';
-      markerDot.style.left = percentX + '%';
-      markerDot.style.top = percentY + '%';
-      
-      const region = ANATOMY_REGIONS.find(r => r.id === selectedRegion);
-      markerLabel.style.display = 'block';
-      markerLabel.style.left = percentX + '%';
-      markerLabel.style.top = (percentY - 6) + '%';
-      markerLabel.textContent = region ? region.label : '';
-      
-      currentPatientData.anatomyCoord = { x: Math.round(percentX), y: Math.round(percentY) };
-    }
-
-    // Renderizar formulario
-    function renderPatientForm() {
-      if (!currentPatientData) currentPatientData = createEmptyPatient();
-      const p = currentPatientData;
-      
-      patientFormContainer.innerHTML = `
-        <div class="row-duo">
-          <div class="input-group">
-            <label>👤 Nombres</label>
-            <input type="text" id="inputNombres" value="${escapeHtml(p.nombres)}" placeholder="Nombres del paciente">
-          </div>
-          <div class="input-group">
-            <label>👥 Apellidos</label>
-            <input type="text" id="inputApellidos" value="${escapeHtml(p.apellidos)}" placeholder="Apellidos">
-          </div>
-        </div>
-        <div class="row-duo">
-          <div class="input-group">
-            <label>🎂 Edad</label>
-            <input type="number" id="inputEdad" value="${escapeHtml(p.edad)}" placeholder="Edad" min="0">
-          </div>
-          <div class="input-group">
-            <label>⚖️ Peso (kg)</label>
-            <input type="text" id="inputPeso" value="${escapeHtml(p.peso)}" placeholder="Peso en kg">
-          </div>
-          <div class="input-group">
-            <label>📏 Talla (cm)</label>
-            <input type="text" id="inputTalla" value="${escapeHtml(p.talla)}" placeholder="Talla en cm">
-          </div>
-        </div>
-        <div class="row-duo">
-          <div class="input-group">
-            <label>💊 Antecedentes farmacológicos</label>
-            <input type="text" id="inputAntFarm" value="${escapeHtml(p.antFarmacologicos)}" placeholder="Medicamentos actuales o previos">
-          </div>
-          <div class="input-group">
-            <label>🩺 Antecedentes patológicos</label>
-            <input type="text" id="inputAntPat" value="${escapeHtml(p.antPatologicos)}" placeholder="Enfermedades previas">
-          </div>
-        </div>
-        <div class="row-duo">
-          <div class="input-group">
-            <label>🩻 Patología</label>
-            <input type="text" id="inputPatologia" value="${escapeHtml(p.patologia)}" placeholder="Diagnóstico actual">
-          </div>
-          <div class="input-group">
-            <label>😣 Dolor EVA (1-10)</label>
-            <div class="pain-range">
-              <input type="range" id="inputDolorEVA" min="0" max="10" value="${p.dolorEVA || '0'}" step="1" style="flex:1;">
-              <span class="pain-value" id="painValueDisplay">${p.dolorEVA || '0'}</span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group">
-          <label>🔍 Causa de la patología</label>
-          <input type="text" id="inputCausa" value="${escapeHtml(p.causaPatologia)}" placeholder="Origen o causa de la patología">
-        </div>
-        <div class="input-group">
-          <label>📍 Lugar de la patología</label>
-          <input type="text" id="inputLugar" value="${escapeHtml(p.lugarPatologia)}" placeholder="Región anatómica afectada">
-        </div>
-      `;
-
-      if (anamnesisTextarea) {
-        anamnesisTextarea.value = p.anamnesis || '';
-      }
-
-      // Event listeners
-      document.getElementById('inputNombres').addEventListener('input', e => currentPatientData.nombres = e.target.value);
-      document.getElementById('inputApellidos').addEventListener('input', e => currentPatientData.apellidos = e.target.value);
-      document.getElementById('inputEdad').addEventListener('input', e => currentPatientData.edad = e.target.value);
-      document.getElementById('inputPeso').addEventListener('input', e => currentPatientData.peso = e.target.value);
-      document.getElementById('inputTalla').addEventListener('input', e => currentPatientData.talla = e.target.value);
-      document.getElementById('inputAntFarm').addEventListener('input', e => currentPatientData.antFarmacologicos = e.target.value);
-      document.getElementById('inputAntPat').addEventListener('input', e => currentPatientData.antPatologicos = e.target.value);
-      document.getElementById('inputPatologia').addEventListener('input', e => currentPatientData.patologia = e.target.value);
-      document.getElementById('inputCausa').addEventListener('input', e => currentPatientData.causaPatologia = e.target.value);
-      document.getElementById('inputLugar').addEventListener('input', e => {
-        currentPatientData.lugarPatologia = e.target.value;
-        // Si el texto coincide con una región, seleccionarla
-        const region = ANATOMY_REGIONS.find(r => r.label.toLowerCase() === e.target.value.toLowerCase());
-        if (region) {
-          selectedRegion = region.id;
-          currentPatientData.anatomyRegion = region.id;
-          renderRegionList();
-          updateMarker();
-        }
-      });
-      
-      const dolorSlider = document.getElementById('inputDolorEVA');
-      const painDisplay = document.getElementById('painValueDisplay');
-      dolorSlider.addEventListener('input', (e) => {
-        currentPatientData.dolorEVA = e.target.value;
-        painDisplay.textContent = e.target.value;
-      });
-    }
-
-    function saveCurrentPatient() {
-      if (!currentPatientData.nombres.trim() && !currentPatientData.apellidos.trim()) {
-        alert('Ingrese al menos nombres o apellidos del paciente.');
-        return;
-      }
-      
-      currentPatientData.anamnesis = anamnesisTextarea.value;
-      currentPatientData.folderId = appData.activeFolderId;
-      
-      const folderId = appData.activeFolderId;
-      if (!appData.patients[folderId]) appData.patients[folderId] = [];
-      
-      if (currentPatientData.id) {
-        const index = appData.patients[folderId].findIndex(p => p.id === currentPatientData.id);
-        if (index !== -1) appData.patients[folderId][index] = { ...currentPatientData };
-      } else {
-        currentPatientData.id = 'pat_' + Date.now();
-        appData.patients[folderId].push({ ...currentPatientData });
-      }
-      
-      saveToStorage();
-      renderPatientList();
-      deletePatientBtn.style.display = 'inline-block';
-      alert('✅ Paciente guardado correctamente.');
-    }
-
-    // Eventos
-    addFolderBtn.addEventListener('click', addNewFolder);
-    saveBtn.addEventListener('click', saveCurrentPatient);
-    newPatientBtn.addEventListener('click', () => {
-      currentPatientData = createEmptyPatient();
-      selectedRegion = null;
-      renderPatientForm();
-      renderRegionList();
-      updateMarker();
-      renderPatientList();
-      deletePatientBtn.style.display = 'none';
-    });
-    deletePatientBtn.addEventListener('click', () => {
-      if (currentPatientData && currentPatientData.id) {
-        deletePatient(currentPatientData.id);
-      }
-    });
-    anamnesisTextarea.addEventListener('input', (e) => {
-      if (currentPatientData) currentPatientData.anamnesis = e.target.value;
-    });
-
-    // Click en diagrama para seleccionar región
-    bodyDiagram.addEventListener('click', (e) => {
-      const target = e.target.closest('[id^="region-"]');
-      if (target) {
-        const regionId = target.id.replace('region-', '');
-        selectedRegion = regionId;
-        currentPatientData.anatomyRegion = regionId;
-        const region = ANATOMY_REGIONS.find(r => r.id === regionId);
-        if (region) {
-          currentPatientData.lugarPatologia = region.label;
-          const lugarInput = document.getElementById('inputLugar');
-          if (lugarInput) lugarInput.value = region.label;
-        }
-        renderRegionList();
-        updateMarker();
-      }
-    });
-
-    // Inicialización
-    function init() {
-      loadFromStorage();
-      renderFolders();
-      currentPatientData = createEmptyPatient();
-      selectedRegion = null;
-      renderPatientList();
-      renderPatientForm();
-      renderRegionList();
-      updateMarker();
-      deletePatientBtn.style.display = 'none';
-    }
-
-    init();
-  })();
-</script>
-</body>
-</html>
-```
+        
+        // Simple slider visual update
+        const painSlider = document.querySelector('.pain-slider');
+        const painBadge = document.getElementById('painValue');
+        
+        painSlider.addEven
