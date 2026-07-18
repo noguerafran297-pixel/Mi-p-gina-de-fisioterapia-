@@ -1,0 +1,678 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>FN SISTEM · Expediente Clínico</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+      background: linear-gradient(145deg, #f7f9fc 0%, #eef2f6 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+    }
+
+    /* animación de entrada general */
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 1100px;
+      animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* tarjeta principal con efecto perlado */
+    .clinical-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fd 100%);
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 20, 60, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(173, 192, 230, 0.4);
+      padding: 2rem 2rem 2.2rem;
+      transition: all 0.2s ease;
+    }
+
+    /* Encabezado con animación del nombre */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .fn-letters {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0b2b5e, #1f4e8c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 6px rgba(0,80,150,0.2));
+      animation: softGlow 2s infinite alternate;
+    }
+
+    @keyframes softGlow {
+      0% { filter: drop-shadow(0 4px 8px rgba(0,112,184,0.2)); }
+      100% { filter: drop-shadow(0 6px 14px rgba(0,112,184,0.4)); }
+    }
+
+    .sistem-text {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #1f4e8c;
+      letter-spacing: 0.3rem;
+      text-transform: uppercase;
+      margin-left: 0.2rem;
+    }
+
+    .folder-manager {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .btn-add-folder {
+      background: #ffffff;
+      border: 1px solid #cbd6e8;
+      color: #1f4e8c;
+      font-weight: 600;
+      padding: 0.7rem 1.4rem;
+      border-radius: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 10px rgba(0,32,64,0.08);
+      cursor: pointer;
+      transition: 0.25s;
+      font-size: 0.9rem;
+    }
+
+    .btn-add-folder:hover {
+      background: white;
+      border-color: #1f4e8c;
+      box-shadow: 0 10px 18px -8px rgba(20,80,150,0.3);
+      transform: scale(1.02);
+    }
+
+    .folders-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 1.8rem;
+      align-items: center;
+    }
+
+    .folder-tab {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid #cfdef5;
+      padding: 0.5rem 1.4rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      color: #103a5c;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f0f4fe;
+      font-size: 0.9rem;
+    }
+
+    .folder-tab.active {
+      background: #1f4e8c;
+      border-color: #0e3a6b;
+      color: white;
+      box-shadow: 0 8px 16px -6px rgba(20,80,160,0.4);
+    }
+
+    .delete-folder {
+      margin-left: 0.3rem;
+      font-weight: bold;
+      border: none;
+      background: transparent;
+      color: #7b8aa6;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: 0.2s;
+    }
+
+    .folder-tab.active .delete-folder {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .delete-folder:hover {
+      color: #c00;
+    }
+
+    .folder-tab.active .delete-folder:hover {
+      color: #ffcccc;
+    }
+
+    .patient-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .row-duo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .input-group {
+      flex: 1 1 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #1e3b5a;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    input, textarea, select {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid #d9e2f0;
+      border-radius: 1.2rem;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.95rem;
+      background: #ffffff;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+      transition: 0.2s;
+      outline: none;
+      color: #0b2b4a;
+      font-family: inherit;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #1f4e8c;
+      box-shadow: 0 0 0 3px rgba(31,78,140,0.15);
+    }
+
+    .anatomy-section {
+      background: #f9fcff;
+      border-radius: 1.8rem;
+      padding: 1.2rem 1.2rem 1rem;
+      border: 1px solid #dce6f5;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .anatomy-title {
+      font-weight: 600;
+      color: #103a5c;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .body-diagram {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e9f0fa;
+      border-radius: 2rem;
+      padding: 1rem;
+      background: linear-gradient(180deg, #e6edf8 0%, #dbe5f5 100%);
+      cursor: pointer;
+      transition: 0.2s;
+      min-height: 240px;
+    }
+
+    .figure-svg {
+      width: 100%;
+      max-height: 280px;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+      transition: 0.2s;
+    }
+
+    .marker-dot {
+      position: absolute;
+      background: #d42e2e;
+      border: 2px solid white;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(200,30,30,0.4);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      transition: 0.1s;
+      display: none;
+    }
+
+    .marker-label {
+      position: absolute;
+      background: rgba(20,30,50,0.85);
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 1rem;
+      white-space: nowrap;
+      transform: translate(-50%, -140%);
+      pointer-events: none;
+      display: none;
+    }
+
+    .pain-range {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pain-value {
+      font-weight: 700;
+      color: #1f4e8c;
+      background: #e6effb;
+      padding: 0.2rem 0.9rem;
+      border-radius: 2rem;
+    }
+
+    .anamnesis-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .footer-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+    }
+
+    .save-btn {
+      background: #1f4e8c;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.8rem 2.2rem;
+      border-radius: 2.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 10px 18px -8px #1f4e8c80;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .save-btn:hover {
+      background: #0e3a6b;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 22px -10px #103a5c;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 650px) {
+      .clinical-card {
+        padding: 1.5rem;
+      }
+      .fn-letters {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="main-container">
+  <div class="clinical-card">
+    
+    <!-- Animación de entrada con palabras FN SISTEM -->
+    <div class="brand-header">
+      <div class="logo-area">
+        <span class="fn-letters">FN</span>
+        <span class="sistem-text">SISTEM</span>
+      </div>
+      <button class="btn-add-folder" id="addFolderBtn">
+        <span>+</span> Nueva carpeta
+      </button>
+    </div>
+
+    <!-- Contenedor dinámico de pestañas de carpetas -->
+    <div id="foldersContainer" class="folders-container"></div>
+
+    <!-- Formulario del paciente (se renderiza según carpeta activa) -->
+    <div id="patientFormContainer" class="patient-grid">
+      <!-- Los campos se generan dinámicamente con JS -->
+    </div>
+
+    <!-- Sección de anatomía interactiva -->
+    <div class="anatomy-section" id="anatomyModule">
+      <div class="anatomy-title">
+        <span>🦵</span> Localización anatómica (toque sobre la figura)
+      </div>
+      <div class="body-diagram" id="bodyDiagram">
+        <!-- SVG simplificado de miembro inferior (pierna) con zona poplítea -->
+        <svg class="figure-svg" viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="leg-outline" stroke="#2c3e50" stroke-width="2.5" fill="#e7ecf8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- muslo -->
+            <path d="M95 20 L90 70 Q85 120 80 150" stroke-width="3" fill="none"/>
+            <path d="M105 20 L110 70 Q115 120 120 150" stroke-width="3" fill="none"/>
+            <!-- rodilla / zona poplítea -->
+            <ellipse cx="100" cy="165" rx="25" ry="18" fill="#d9e2f0" stroke="#1e3b5a" stroke-width="2.5"/>
+            <!-- pantorrilla -->
+            <path d="M82 180 Q78 220 70 260" stroke-width="3" fill="none"/>
+            <path d="M118 180 Q122 220 130 260" stroke-width="3" fill="none"/>
+            <!-- pie simplificado -->
+            <path d="M70 260 L95 275 L130 260" stroke-width="3" fill="none"/>
+            <line x1="95" y1="275" x2="95" y2="285" stroke-width="2.5"/>
+          </g>
+          <text x="100" y="295" text-anchor="middle" fill="#1e3b5a" font-size="10">Miembro inferior derecho</text>
+        </svg>
+        <div id="anatomyMarker" class="marker-dot"></div>
+        <div id="anatomyLabel" class="marker-label">Fosa poplítea</div>
+      </div>
+      <div style="margin-top: 0.5rem; font-size:0.8rem; color:#2c3e50;" id="selectedLocationText">
+        📍 Ningún punto seleccionado
+      </div>
+    </div>
+
+    <!-- Anamnesis y guardado -->
+    <div class="anamnesis-block">
+      <label>📋 Anamnesis</label>
+      <textarea id="anamnesisText" placeholder="Redacte la anamnesis detallada del paciente..."></textarea>
+    </div>
+
+    <div class="footer-actions">
+      <button class="save-btn" id="savePatientBtn">💾 Guardar paciente</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Estado de la aplicación
+    const STORAGE_KEY = 'fn_sistem_patients';
+    
+    // Estructura de carpeta por defecto
+    const DEFAULT_FOLDER_ID = 'folder_001';
+    
+    // Datos iniciales
+    let appData = {
+      folders: [
+        { id: DEFAULT_FOLDER_ID, name: 'Pacientes Generales' }
+      ],
+      activeFolderId: DEFAULT_FOLDER_ID,
+      patients: {
+        [DEFAULT_FOLDER_ID]: []
+      }
+    };
+
+    // Paciente actual en formulario (datos temporales)
+    let currentPatientData = {
+      id: null,
+      folderId: null,
+      nombres: '',
+      apellidos: '',
+      edad: '',
+      peso: '',
+      talla: '',
+      antFarmacologicos: '',
+      antPatologicos: '',
+      patologia: '',
+      dolorEVA: '0',
+      causaPatologia: '',
+      lugarPatologia: 'Miembro inferior derecho - fosa poplítea',
+      anatomyCoord: { x: 50, y: 58 }, // porcentaje relativo
+      anamnesis: ''
+    };
+
+    // Elementos DOM
+    const foldersContainer = document.getElementById('foldersContainer');
+    const patientFormContainer = document.getElementById('patientFormContainer');
+    const addFolderBtn = document.getElementById('addFolderBtn');
+    const saveBtn = document.getElementById('savePatientBtn');
+    const anamnesisTextarea = document.getElementById('anamnesisText');
+    const bodyDiagram = document.getElementById('bodyDiagram');
+    const markerDot = document.getElementById('anatomyMarker');
+    const markerLabel = document.getElementById('anatomyLabel');
+    const selectedLocationText = document.getElementById('selectedLocationText');
+
+    // Cargar datos desde localStorage
+    function loadFromStorage() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (parsed.folders && parsed.patients && parsed.activeFolderId) {
+            appData = parsed;
+          }
+        } catch (e) {
+          console.warn('Error al cargar datos, usando defaults');
+        }
+      }
+      // Asegurar carpeta por defecto
+      if (!appData.folders.length) {
+        appData.folders = [{ id: DEFAULT_FOLDER_ID, name: 'Pacientes Generales' }];
+        appData.activeFolderId = DEFAULT_FOLDER_ID;
+        appData.patients[DEFAULT_FOLDER_ID] = [];
+      }
+      if (!appData.activeFolderId || !appData.folders.find(f => f.id === appData.activeFolderId)) {
+        appData.activeFolderId = appData.folders[0].id;
+      }
+    }
+
+    function saveToStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+    }
+
+    // Renderizar pestañas de carpetas
+    function renderFolders() {
+      if (!foldersContainer) return;
+      foldersContainer.innerHTML = '';
+      appData.folders.forEach(folder => {
+        const tab = document.createElement('div');
+        tab.className = `folder-tab ${folder.id === appData.activeFolderId ? 'active' : ''}`;
+        tab.innerHTML = `
+          <span>📁 ${escapeHtml(folder.name)}</span>
+          ${appData.folders.length > 1 ? '<button class="delete-folder" data-folder-id="' + folder.id + '">✕</button>' : ''}
+        `;
+        tab.addEventListener('click', (e) => {
+          if (e.target.classList.contains('delete-folder')) {
+            e.stopPropagation();
+            deleteFolder(folder.id);
+            return;
+          }
+          setActiveFolder(folder.id);
+        });
+        foldersContainer.appendChild(tab);
+      });
+    }
+
+    function escapeHtml(text) {
+      return String(text).replace(/[&<>"]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        if (m === '"') return '&quot;';
+        return m;
+      });
+    }
+
+    function setActiveFolder(folderId) {
+      if (appData.activeFolderId === folderId) return;
+      appData.activeFolderId = folderId;
+      saveToStorage();
+      renderFolders();
+      resetPatientForm();
+      renderPatientForm();
+    }
+
+    function deleteFolder(folderId) {
+      if (appData.folders.length <= 1) {
+        alert('Debe existir al menos una carpeta.');
+        return;
+      }
+      const confirmDel = confirm('¿Eliminar esta carpeta y todos sus pacientes?');
+      if (!confirmDel) return;
+      
+      appData.folders = appData.folders.filter(f => f.id !== folderId);
+      delete appData.patients[folderId];
+      
+      if (appData.activeFolderId === folderId) {
+        appData.activeFolderId = appData.folders[0].id;
+      }
+      saveToStorage();
+      renderFolders();
+      resetPatientForm();
+      renderPatientForm();
+    }
+
+    function addNewFolder() {
+      const name = prompt('Nombre de la nueva carpeta:');
+      if (!name || name.trim() === '') return;
+      const trimmed = name.trim();
+      const newId = 'folder_' + Date.now() + Math.random().toString(36).substr(2, 4);
+      appData.folders.push({ id: newId, name: trimmed });
+      appData.patients[newId] = [];
+      appData.activeFolderId = newId;
+      saveToStorage();
+      renderFolders();
+      resetPatientForm();
+      renderPatientForm();
+    }
+
+    function resetPatientForm() {
+      currentPatientData = {
+        id: null,
+        folderId: appData.activeFolderId,
+        nombres: '',
+        apellidos: '',
+        edad: '',
+        peso: '',
+        talla: '',
+        antFarmacologicos: '',
+        antPatologicos: '',
+        patologia: '',
+        dolorEVA: '0',
+        causaPatologia: '',
+        lugarPatologia: 'Miembro inferior derecho - fosa poplítea',
+        anatomyCoord: { x: 50, y: 58 },
+        anamnesis: ''
+      };
+    }
+
+    // Renderizar formulario con datos actuales
+    function renderPatientForm() {
+      if (!patientFormContainer) return;
+      const p = currentPatientData;
+      patientFormContainer.innerHTML = `
+        <div class="row-duo">
+          <div class="input-group">
+            <label>👤 Nombres</label>
+            <input type="text" id="inputNombres" value="${escapeHtml(p.nombres)}" placeholder="Nombres">
+          </div>
+          <div class="input-group">
+            <label>👥 Apellidos</label>
+            <input type="text" id="inputApellidos" value="${escapeHtml(p.apellidos)}" placeholder="Apellidos">
+          </div>
+        </div>
+        <div class="row-duo">
+          <div class="input-group">
+            <label>🎂 Edad</label>
+            <input type="number" id="inputEdad" value="${escapeHtml(p.edad)}" placeholder="Edad" min="0">
+          </div>
+          <div class="input-group">
+            <label>⚖️ Peso (kg)</label>
+            <input type="text" id="inputPeso" value="${escapeHtml(p.peso)}" placeholder="Peso">
+          </div>
+          <div class="input-group">
+            <label>📏 Talla (cm)</label>
+            <input type="text" id="inputTalla" value="${escapeHtml(p.talla)}" placeholder="Talla">
+          </div>
+        </div>
+        <div class="row-duo">
+          <div class="input-group">
+            <label>💊 Antecedentes farmacológicos</label>
+            <input type="text" id="inputAntFarm" value="${escapeHtml(p.antFarmacologicos)}" placeholder="Medicamentos">
+          </div>
+          <div class="input-group">
+            <label>🩺 Antecedentes patológicos</label>
+            <input type="text" id="inputAntPat" value="${escapeHtml(p.antPatologicos)}" placeholder="Enfermedades previas">
+          </div>
+        </div>
+        <div class="row-duo">
+          <div class="input-group">
+            <label>🩻 Patología</label>
+            <input type="text" id="inputPatologia" value="${escapeHtml(p.patologia)}" placeholder="Diagnóstico / patología">
+          </div>
+          <div class="input-group">
+            <label>😣 Nivel de dolor (EVA 1-10)</label>
+            <div class="pain-range">
+              <input type="range" id="inputDolorEVA" min="0" max="10" value="${p.dolorEVA || '0'}" step="1" style="flex:1;">
+              <span class="pain-value" id="painValueDisplay">${p.dolorEVA || '0'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>🔍 Causa de la patología</label>
+          <input type="text" id="inputCausa" value="${escapeHtml(p.causaPatologia)}" placeholder="Origen o causa">
+        </div>
+        <div class="input-group">
+          <label>📍 Lugar de la patología (texto)</label>
+          <input type="text" id="inputLugar" value="${escapeHtml(p.lugarPatologia)}" placeholder="Ej: miembro inferior derecho, fosa poplítea">
+        </div>
+      `;
+
+      // Actualizar anamnesis
+      if (anamnesisTextarea) {
+        anamnesisTextarea.value = p.anamnesis || '';
+      }
+
+    
