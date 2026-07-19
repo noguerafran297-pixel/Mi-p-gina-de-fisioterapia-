@@ -94,29 +94,6 @@
     } catch (_e) {}
   </script>
   <style>
-    /* Variables para modo claro/oscuro - NO MODIFICA ESTILOS EXISTENTES */
-    :root {
-      --bg-primary: #0A1929;
-      --bg-container: #0F2B4C;
-      --text-primary: #F5F0E8;
-      --text-dim: #D4C9B5;
-      --accent: #C5A86B;
-      --border-color: rgba(197, 168, 107, 0.2);
-      --card-bg: rgba(15, 43, 76, 0.8);
-      --input-bg: rgba(20, 52, 80, 0.3);
-    }
-    
-    .light-mode {
-      --bg-primary: #F5F0E8;
-      --bg-container: #E6DED0;
-      --text-primary: #0A1929;
-      --text-dim: #4A6578;
-      --accent: #C5A86B;
-      --border-color: rgba(10, 25, 41, 0.15);
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --input-bg: rgba(10, 25, 41, 0.05);
-    }
-    
     /* Ajustes para integración de elementos funcionales en el diseño */
     .ghost-border {
       border: 1px solid rgba(197, 168, 107, 0.15);
@@ -317,58 +294,6 @@
       from { transform: translateX(-50%) translateY(20px); opacity: 0; }
       to { transform: translateX(-50%) translateY(0); opacity: 1; }
     }
-    
-    /* NUEVOS ESTILOS AÑADIDOS - Menú de opciones */
-    .options-menu {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: #0F2B4C;
-      border: 1px solid rgba(197, 168, 107, 0.2);
-      border-radius: 0.75rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      min-width: 220px;
-      z-index: 100;
-      display: none;
-      overflow: hidden;
-    }
-    .options-menu.show {
-      display: block;
-      animation: fadeIn 0.2s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* NUEVOS ESTILOS - Botón de opciones de carpeta */
-    .folder-options-btn {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      width: 18px;
-      height: 18px;
-      background: #0F2B4C;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 10px;
-      color: #D4C9B5;
-      transition: all 0.2s;
-    }
-    .folder-options-btn:hover {
-      background: #BA1A1A;
-      color: white;
-    }
-    
-    /* NUEVOS ESTILOS - Grupo de pestaña de carpeta */
-    .folder-tab-group {
-      position: relative;
-      display: inline-flex;
-      flex-shrink: 0;
-    }
   </style>
 </head>
 <body class="bg-navy-blue text-pearl-white">
@@ -384,26 +309,6 @@
                 <span class="material-symbols-outlined text-sm">create_new_folder</span>
                 <span class="hidden md:inline">Nueva carpeta</span>
             </button>
-            <!-- NUEVO: Botón de menú de tres puntos -->
-            <div class="relative">
-                <button class="text-pearl-dim hover:text-gold-accent transition-colors p-2" id="optionsMenuBtn">
-                    <span class="material-symbols-outlined">more_vert</span>
-                </button>
-                <!-- NUEVO: Menú desplegable -->
-                <div class="options-menu" id="optionsMenu">
-                    <div class="p-3 border-b border-gold-accent/20">
-                        <p class="text-xs font-bold uppercase tracking-wider text-pearl-dim">Opciones del Sistema</p>
-                    </div>
-                    <button class="w-full text-left px-4 py-3 hover:bg-gold-accent/10 flex items-center gap-3 transition-colors text-pearl-white" id="toggleThemeBtn">
-                        <span class="material-symbols-outlined text-sm">dark_mode</span>
-                        <span>Modo Oscuro / Claro</span>
-                    </button>
-                    <div class="px-4 py-3 border-t border-gold-accent/20 text-pearl-dim">
-                        <p class="text-xs font-bold uppercase tracking-wider mb-1">Total Expedientes</p>
-                        <p class="text-2xl font-bold text-gold-accent" id="totalExpedientes">0</p>
-                    </div>
-                </div>
-            </div>
             <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gold-accent">
                 <img class="w-full h-full object-cover" alt="Doctor Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj_Yq5pwX1FXglD_04DYbX9ANyR6Wbg3EQ13kPCUeF8UNGmtQCoL9YccJuaMYyk4yMhZ5TfQ-rm91W0EquueKe3Nu_X1JFpchhl7XeuVnP5H9hfZHHgzoOIE776xoeDg5r6OPPZNHBN-JnmnQN0reCQXDNd_z91Z7jnEMVrF_2lo8sCWWGG_yBFLgL3sS8qa4CDR3_CTTAhQ_VBffMZrbWVwl6ywhRrnUjFPtVUR0w39zZly_bKI0fJw">
             </div>
@@ -487,4 +392,50 @@
                         <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="text" id="inputCedula" placeholder="Cédula" data-field="cedula">
                     </div>
                     <div class="space-y-xs">
-        
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">EDAD</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="number" id="inputEdad" placeholder="Edad" data-field="edad">
+                    </div>
+                    <div class="space-y-xs col-span-2">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">TELÉFONO</label>
+                        <input class="w-full bg-navy-light/30 border border-gold-accent/20 rounded px-3 py-2 font-body-md text-pearl-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none auto-save" type="tel" id="inputTelefono" placeholder="Ej: +58 412-1234567" data-field="telefono">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Reason & Intensity -->
+            <div class="card-bg rounded-xl p-md custom-shadow">
+                <div class="flex items-center gap-sm mb-md">
+                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10 flex items-center justify-center text-gold-accent">
+                        <span class="material-symbols-outlined" style="font-size: 32px;">stethoscope</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-pearl-white">Detalle de Consulta</h3>
+                </div>
+                <div class="space-y-lg">
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">MOTIVO DE CONSULTA</label>
+                        <input class="w-full bg-navy-light/30 border-0 border-b border-gold-accent/40 focus:ring-0 focus:border-gold-accent px-0 font-body-md text-pearl-white placeholder-pearl-dim/50 auto-save" type="text" id="inputPatologia" placeholder="Ej: Dolor lumbar crónico" data-field="motivo">
+                        <textarea class="clinical-note-area w-full mt-2 auto-save" placeholder="Notas adicionales sobre el motivo de consulta..." data-field="notasMotivo"></textarea>
+                    </div>
+                    <div class="space-y-md">
+                        <div class="flex justify-between items-center">
+                            <label class="font-label-caps text-label-caps text-pearl-dim block">INTENSIDAD DEL DOLOR</label>
+                            <span class="bg-gold-accent text-navy-blue px-3 py-1 rounded-full text-xs font-bold" id="painValue">0 / 10</span>
+                        </div>
+                        <input class="w-full h-2 rounded-lg appearance-none cursor-pointer auto-save" max="10" min="0" step="1" type="range" value="0" id="inputDolorEVA" data-field="dolor">
+                        <div class="flex justify-between text-[10px] font-bold text-pearl-dim uppercase tracking-tighter">
+                            <span>Sin dolor</span>
+                            <span>Moderado</span>
+                            <span>Insoportable</span>
+                        </div>
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-caps text-label-caps text-pearl-dim block">OBSERVACIONES DEL DOLOR</label>
+                        <textarea class="clinical-note-area w-full auto-save" placeholder="Describa características del dolor, irradiación, etc..." data-field="notasDolor"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tratamiento y Receta -->
+            <div class="card-bg rounded-xl p-md custom-shadow">
+                <div class="flex items-center gap-sm mb-md">
+                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10
